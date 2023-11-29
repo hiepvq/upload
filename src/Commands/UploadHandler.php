@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,19 +10,19 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Commands;
+namespace Hiepvq\Upload\Commands;
 
 use enshrined\svgSanitize\Sanitizer;
 use Exception;
 use Flarum\Foundation\Application;
 use Flarum\Foundation\ValidationException;
 use Flarum\Locale\Translator;
-use FoF\Upload\Adapters\Manager;
-use FoF\Upload\Contracts\UploadAdapter;
-use FoF\Upload\Events;
-use FoF\Upload\File;
-use FoF\Upload\Helpers\Util;
-use FoF\Upload\Repositories\FileRepository;
+use Hiepvq\Upload\Adapters\Manager;
+use Hiepvq\Upload\Contracts\UploadAdapter;
+use Hiepvq\Upload\Events;
+use Hiepvq\Upload\File;
+use Hiepvq\Upload\Helpers\Util;
+use Hiepvq\Upload\Repositories\FileRepository;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -93,7 +93,7 @@ class UploadHandler
      */
     public function handle(Upload $command)
     {
-        $command->actor->assertCan('fof-upload.upload');
+        $command->actor->assertCan('hiepvq-upload.upload');
 
         $savedFiles = $command->files->map(function (UploadedFileInterface $file) use ($command) {
             $upload = $this->files->moveUploadedFileToTemp($file);
@@ -102,7 +102,7 @@ class UploadHandler
                 try {
                     $this->mimeDetector->setFile($upload->getPathname());
                 } catch (MimeDetectorException $e) {
-                    throw new ValidationException(['upload' => $this->translator->trans('fof-upload.api.upload_errors.could_not_detect_mime')]);
+                    throw new ValidationException(['upload' => $this->translator->trans('hiepvq-upload.api.upload_errors.could_not_detect_mime')]);
                 }
 
                 $uploadFileData = $this->mimeDetector->getFileType();
@@ -111,7 +111,7 @@ class UploadHandler
                     try {
                         $uploadFileData['mime'] = mime_content_type($upload->getPathname());
                     } catch (Exception $e) {
-                        throw new ValidationException(['upload' => $this->translator->trans('fof-upload.api.upload_errors.could_not_detect_mime')]);
+                        throw new ValidationException(['upload' => $this->translator->trans('hiepvq-upload.api.upload_errors.could_not_detect_mime')]);
                     }
                 }
 
@@ -123,7 +123,7 @@ class UploadHandler
                     if (!$cleanSvg) {
                         //TODO maybe expose the error list via ValidationException?
                         //$issues = $this->sanitizer->getXmlIssues();
-                        throw new ValidationException(['upload' => $this->translator->trans('fof-upload.api.upload_errors.svg_failure')]);
+                        throw new ValidationException(['upload' => $this->translator->trans('hiepvq-upload.api.upload_errors.svg_failure')]);
                     }
 
                     file_put_contents($upload->getPathname(), $cleanSvg, LOCK_EX);
@@ -138,11 +138,11 @@ class UploadHandler
                 );
 
                 if (!$adapter) {
-                    throw new ValidationException(['upload' => $this->translator->trans('fof-upload.api.upload_errors.forbidden_type')]);
+                    throw new ValidationException(['upload' => $this->translator->trans('hiepvq-upload.api.upload_errors.forbidden_type')]);
                 }
 
                 if (!$adapter->forMime($uploadFileData['mime'])) {
-                    throw new ValidationException(['upload' => resolve('translator')->trans('fof-upload.api.upload_errors.unsupported_type', ['mime' => $uploadFileData['mime']])]);
+                    throw new ValidationException(['upload' => resolve('translator')->trans('hiepvq-upload.api.upload_errors.unsupported_type', ['mime' => $uploadFileData['mime']])]);
                 }
 
                 $file = $this->files->createFileFromUpload($upload, $command->actor, $uploadFileData['mime']);

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,11 +10,11 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Validators;
+namespace Hiepvq\Upload\Validators;
 
 use Flarum\Foundation\AbstractValidator;
 use Flarum\Settings\SettingsRepositoryInterface;
-use FoF\Upload\Helpers\Util;
+use Hiepvq\Upload\Helpers\Util;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UploadValidator extends AbstractValidator
@@ -35,7 +35,7 @@ class UploadValidator extends AbstractValidator
         $translator = resolve('translator');
 
         return [
-            'max' => $translator->trans('fof-upload.forum.validation.max_size', [
+            'max' => $translator->trans('hiepvq-upload.forum.validation.max_size', [
                 'max' => $this->maxFilesize(),
             ]),
         ];
@@ -46,6 +46,6 @@ class UploadValidator extends AbstractValidator
         /** @var SettingsRepositoryInterface $settings */
         $settings = resolve(SettingsRepositoryInterface::class);
 
-        return $settings->get('fof-upload.maxFileSize', Util::DEFAULT_MAX_FILE_SIZE);
+        return $settings->get('hiepvq-upload.maxFileSize', Util::DEFAULT_MAX_FILE_SIZE);
     }
 }

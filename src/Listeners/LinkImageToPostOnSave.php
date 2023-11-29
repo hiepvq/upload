@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,11 +10,11 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Listeners;
+namespace Hiepvq\Upload\Listeners;
 
 use Flarum\Post\Event\Posted;
 use Flarum\Post\Event\Revised;
-use FoF\Upload\Repositories\FileRepository;
+use Hiepvq\Upload\Repositories\FileRepository;
 
 class LinkImageToPostOnSave
 {

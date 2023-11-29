@@ -28,7 +28,7 @@ export default class FileManagerModal extends Modal {
   }
 
   className() {
-    return 'Modal--large fof-file-manager-modal';
+    return 'Modal--large hiepvq-file-manager-modal';
   }
 
   /**
@@ -55,20 +55,20 @@ export default class FileManagerModal extends Modal {
     return (
       <div className={`Modal modal-dialog ${this.className()}`}>
         <div className="Modal-content">
-          <div className="fof-modal-buttons App-backControl">
+          <div className="hiepvq-modal-buttons App-backControl">
             <UploadButton uploader={this.uploader} disabled={app.fileListState.isLoading()} isMediaUploadButton />
           </div>
 
-          <div className="fof-drag-and-drop">
-            <div className="fof-drag-and-drop-release">
+          <div className="hiepvq-drag-and-drop">
+            <div className="hiepvq-drag-and-drop-release">
               <i className="fas fa-cloud-upload-alt" />
 
-              {app.translator.trans('fof-upload.forum.file_list.release_to_upload')}
+              {app.translator.trans('hiepvq-upload.forum.file_list.release_to_upload')}
             </div>
           </div>
 
           <div className="Modal-header">
-            <h3 className="App-titleControl App-titleControl--text">{app.translator.trans('fof-upload.forum.media_manager')}</h3>
+            <h3 className="App-titleControl App-titleControl--text">{app.translator.trans('hiepvq-upload.forum.media_manager')}</h3>
           </div>
 
           {this.alertAttrs && (
@@ -89,7 +89,7 @@ export default class FileManagerModal extends Modal {
 
           <div className="Modal-footer">
             <Button onclick={this.hide.bind(this)} className="Button">
-              {app.translator.trans('fof-upload.forum.buttons.cancel')}
+              {app.translator.trans('hiepvq-upload.forum.buttons.cancel')}
             </Button>
 
             <Button
@@ -97,7 +97,7 @@ export default class FileManagerModal extends Modal {
               disabled={this.selectedFiles.length === 0 || (!this.multiSelect && this.selectedFiles.length > 1)}
               className="Button Button--primary"
             >
-              {app.translator.trans('fof-upload.forum.file_list.confirm_selection_btn', { fileCount })}
+              {app.translator.trans('hiepvq-upload.forum.file_list.confirm_selection_btn', { fileCount })}
             </Button>
           </div>
         </div>

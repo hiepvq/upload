@@ -1,5 +1,5 @@
 {
-    "name": "fof/upload",
+    "name": "hiepvq/upload",
     "description": "The file upload extension for the Flarum forum with insane intelligence.",
     "keywords": [
         "upload",
@@ -28,7 +28,7 @@
     "funding": [
         {
             "type": "website",
-            "url": "https://opencollective.com/fof/donate"
+            "url": "https://opencollective.com/hiepvq/donate"
         }
     ],
     "require": {
@@ -55,7 +55,7 @@
     },
     "extra": {
         "flarum-extension": {
-            "title": "FoF Upload",
+            "title": "Hiepvq Upload",
             "category": "feature",
             "icon": {
                 "name": "fas fa-file-upload",
@@ -75,7 +75,7 @@
     },
     "autoload": {
         "psr-4": {
-            "FoF\\Upload\\": "src/"
+            "Hiepvq\\Upload\\": "src/"
         }
     },
     "scripts": {
@@ -84,5 +84,7 @@
     },
     "scripts-descriptions": {
         "analyse:phpstan": "Run static analysis"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": false
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,11 +10,11 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Api\Controllers;
+namespace Hiepvq\Upload\Api\Controllers;
 
 use Exception;
 use Flarum\Http\RequestUtil;
-use FoF\Upload\Repositories\FileRepository;
+use Hiepvq\Upload\Repositories\FileRepository;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
 use Laminas\Diactoros\Response\JsonResponse;

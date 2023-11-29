@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,16 +10,16 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Console;
+namespace Hiepvq\Upload\Console;
 
 use Carbon\Carbon;
-use FoF\Upload\File;
-use FoF\Upload\Repositories\FileRepository;
+use Hiepvq\Upload\File;
+use Hiepvq\Upload\Repositories\FileRepository;
 use Illuminate\Console\Command;
 
 class MapFilesCommand extends Command
 {
-    protected $signature = 'fof:upload
+    protected $signature = 'hiepvq:upload
         {--map : Tries to map uploaded files to posts}
         {--cleanup : Cleans unused uploaded files from storage}
         {--cleanup-before= : Orphaned files before this date are removed (default 1 day ago, format "yyyy-mm-dd" or "now", "today" etc)}

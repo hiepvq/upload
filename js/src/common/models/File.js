@@ -15,9 +15,9 @@ export default class File extends mixin(Model, {
   bbcode: Model.attribute('bbcode'),
 }) {
   /**
-   * Use FoF Uploads endpoint
+   * Use Hiepvq Uploads endpoint
    */
   apiEndpoint() {
-    return '/fof/uploads' + (this.exists ? '/' + this.data.id : '');
+    return '/hiepvq/uploads' + (this.exists ? '/' + this.data.id : '');
   }
 }

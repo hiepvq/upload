@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,12 +10,12 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Helpers;
+namespace Hiepvq\Upload\Helpers;
 
 use Flarum\Settings\SettingsRepositoryInterface;
-use FoF\Upload\Adapters\Manager;
-use FoF\Upload\Contracts\Template;
-use FoF\Upload\File;
+use Hiepvq\Upload\Adapters\Manager;
+use Hiepvq\Upload\Contracts\Template;
+use Hiepvq\Upload\File;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
@@ -44,7 +44,7 @@ class Util
                 return $available;
             })
             ->map(function ($available, $item) {
-                return resolve('translator')->trans('fof-upload.admin.upload_methods.'.$item);
+                return resolve('translator')->trans('hiepvq-upload.admin.upload_methods.'.$item);
             });
     }
 
@@ -69,7 +69,7 @@ class Util
     public function getMimeTypesConfiguration()
     {
         $settings = resolve(SettingsRepositoryInterface::class);
-        $mimeTypes = $settings->get('fof-upload.mimeTypes');
+        $mimeTypes = $settings->get('hiepvq-upload.mimeTypes');
 
         $adapters = $this->getAvailableUploadMethods();
 

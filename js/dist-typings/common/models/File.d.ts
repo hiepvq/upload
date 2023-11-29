@@ -1,6 +1,6 @@
 export default class File {
     /**
-     * Use FoF Uploads endpoint
+     * Use Hiepvq Uploads endpoint
      */
     apiEndpoint(): string;
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,10 +10,10 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Listeners;
+namespace Hiepvq\Upload\Listeners;
 
 use Flarum\Settings\Event\Deserializing;
-use FoF\Upload\Helpers\Util;
+use Hiepvq\Upload\Helpers\Util;
 
 class AddAvailableOptionsInAdmin
 {
@@ -29,9 +29,9 @@ class AddAvailableOptionsInAdmin
 
     public function handle(Deserializing $event)
     {
-        $event->settings['fof-upload.availableUploadMethods'] = $this->util->getAvailableUploadMethods()->toArray();
-        $event->settings['fof-upload.availableTemplates'] = $this->util->getAvailableTemplates()->toArray();
-        $event->settings['fof-upload.php_ini.post_max_size'] = ini_get('post_max_size');
-        $event->settings['fof-upload.php_ini.upload_max_filesize'] = ini_get('upload_max_filesize');
+        $event->settings['hiepvq-upload.availableUploadMethods'] = $this->util->getAvailableUploadMethods()->toArray();
+        $event->settings['hiepvq-upload.availableTemplates'] = $this->util->getAvailableTemplates()->toArray();
+        $event->settings['hiepvq-upload.php_ini.post_max_size'] = ini_get('post_max_size');
+        $event->settings['hiepvq-upload.php_ini.upload_max_filesize'] = ini_get('upload_max_filesize');
     }
 }

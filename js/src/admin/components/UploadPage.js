@@ -68,16 +68,16 @@ export default class UploadPage extends ExtensionPage {
 
     // Composer button options
     this.composerButtonVisiblityOptions = {
-      both: app.translator.trans('fof-upload.admin.labels.composer_buttons.options.both'),
-      'upload-btn': app.translator.trans('fof-upload.admin.labels.composer_buttons.options.upload-btn'),
-      'media-btn': app.translator.trans('fof-upload.admin.labels.composer_buttons.options.media-btn'),
+      both: app.translator.trans('hiepvq-upload.admin.labels.composer_buttons.options.both'),
+      'upload-btn': app.translator.trans('hiepvq-upload.admin.labels.composer_buttons.options.upload-btn'),
+      'media-btn': app.translator.trans('hiepvq-upload.admin.labels.composer_buttons.options.media-btn'),
     };
 
     // get the saved settings from the database
     const settings = app.data.settings;
 
     // our package prefix (to be added to every field and checkbox in the setting table)
-    this.settingsPrefix = 'fof-upload';
+    this.settingsPrefix = 'hiepvq-upload';
 
     // Options for the Upload methods dropdown menu.
     this.uploadMethodOptions = settings[this.addPrefix('availableUploadMethods')] || {};
@@ -126,8 +126,8 @@ export default class UploadPage extends ExtensionPage {
             },
             [
               m('fieldset', [
-                m('legend', app.translator.trans('fof-upload.admin.labels.preferences.title')),
-                m('label', app.translator.trans('fof-upload.admin.labels.preferences.max_file_size')),
+                m('legend', app.translator.trans('hiepvq-upload.admin.labels.preferences.title')),
+                m('label', app.translator.trans('hiepvq-upload.admin.labels.preferences.max_file_size')),
                 m('input.FormControl', {
                   value: this.values.maxFileSize() || 2048,
                   oninput: withAttr('value', this.values.maxFileSize),
@@ -136,12 +136,12 @@ export default class UploadPage extends ExtensionPage {
                 }),
                 m(
                   '.helpText',
-                  app.translator.trans('fof-upload.admin.labels.preferences.php_ini_values', {
+                  app.translator.trans('hiepvq-upload.admin.labels.preferences.php_ini_values', {
                     post: max_post,
                     upload: max_upload,
                   })
                 ),
-                m('label', app.translator.trans('fof-upload.admin.labels.preferences.mime_types')),
+                m('label', app.translator.trans('hiepvq-upload.admin.labels.preferences.mime_types')),
                 m(
                   '.MimeTypes--Container',
                   Object.keys(this.values.mimeTypes()).map((mime) => {
@@ -207,7 +207,7 @@ export default class UploadPage extends ExtensionPage {
                     ),
                   ])
                 ),
-                m('.helpText', app.translator.trans('fof-upload.admin.help_texts.mime_types')),
+                m('.helpText', app.translator.trans('hiepvq-upload.admin.help_texts.mime_types')),
                 Button.component(
                   {
                     className: 'Button',
@@ -215,14 +215,14 @@ export default class UploadPage extends ExtensionPage {
                       app.modal.show(InspectMimeModal);
                     },
                   },
-                  app.translator.trans('fof-upload.admin.labels.inspect-mime')
+                  app.translator.trans('hiepvq-upload.admin.labels.inspect-mime')
                 ),
-                m('.helpText', app.translator.trans('fof-upload.admin.help_texts.download_templates')),
+                m('.helpText', app.translator.trans('hiepvq-upload.admin.help_texts.download_templates')),
                 this.templateOptionsDescriptions(),
               ]),
               m('fieldset.composerButtons', [
-                m('legend', app.translator.trans('fof-upload.admin.labels.composer_buttons.title')),
-                m('.helpText', app.translator.trans('fof-upload.admin.help_texts.composer_buttons')),
+                m('legend', app.translator.trans('hiepvq-upload.admin.labels.composer_buttons.title')),
+                m('.helpText', app.translator.trans('hiepvq-upload.admin.help_texts.composer_buttons')),
                 m('div', [
                   Select.component({
                     options: this.composerButtonVisiblityOptions,
@@ -232,16 +232,16 @@ export default class UploadPage extends ExtensionPage {
                 ]),
               ]),
               m('fieldset', [
-                m('legend', app.translator.trans('fof-upload.admin.labels.resize.title')),
-                m('.helpText', app.translator.trans('fof-upload.admin.help_texts.resize')),
+                m('legend', app.translator.trans('hiepvq-upload.admin.labels.resize.title')),
+                m('.helpText', app.translator.trans('hiepvq-upload.admin.help_texts.resize')),
                 Switch.component(
                   {
                     state: this.values.mustResize() || false,
                     onchange: this.values.mustResize,
                   },
-                  app.translator.trans('fof-upload.admin.labels.resize.toggle')
+                  app.translator.trans('hiepvq-upload.admin.labels.resize.toggle')
                 ),
-                m('label', app.translator.trans('fof-upload.admin.labels.resize.max_width')),
+                m('label', app.translator.trans('hiepvq-upload.admin.labels.resize.max_width')),
                 m('input', {
                   className: 'FormControl',
                   value: this.values.resizeMaxWidth() || 100,
@@ -252,8 +252,8 @@ export default class UploadPage extends ExtensionPage {
                 }),
               ]),
               m('fieldset', [
-                m('legend', app.translator.trans('fof-upload.admin.labels.client_extension.title')),
-                m('.helpText', app.translator.trans('fof-upload.admin.help_texts.client_extension')),
+                m('legend', app.translator.trans('hiepvq-upload.admin.labels.client_extension.title')),
+                m('.helpText', app.translator.trans('hiepvq-upload.admin.help_texts.client_extension')),
                 m('input', {
                   className: 'FormControl',
                   value: this.values.whitelistedClientExtensions() || '',
@@ -261,16 +261,16 @@ export default class UploadPage extends ExtensionPage {
                 }),
               ]),
               m('fieldset', [
-                m('legend', app.translator.trans('fof-upload.admin.labels.watermark.title')),
-                m('.helpText', app.translator.trans('fof-upload.admin.help_texts.watermark')),
+                m('legend', app.translator.trans('hiepvq-upload.admin.labels.watermark.title')),
+                m('.helpText', app.translator.trans('hiepvq-upload.admin.help_texts.watermark')),
                 Switch.component(
                   {
                     state: this.values.addsWatermarks() || false,
                     onchange: this.values.addsWatermarks,
                   },
-                  app.translator.trans('fof-upload.admin.labels.watermark.toggle')
+                  app.translator.trans('hiepvq-upload.admin.labels.watermark.toggle')
                 ),
-                m('label', app.translator.trans('fof-upload.admin.labels.watermark.position')),
+                m('label', app.translator.trans('hiepvq-upload.admin.labels.watermark.position')),
                 m('div', [
                   Select.component({
                     options: this.watermarkPositions,
@@ -278,34 +278,34 @@ export default class UploadPage extends ExtensionPage {
                     value: this.values.watermarkPosition() || 'bottom-right',
                   }),
                 ]),
-                m('label', {}, app.translator.trans('fof-upload.admin.labels.watermark.file')),
+                m('label', {}, app.translator.trans('hiepvq-upload.admin.labels.watermark.file')),
                 UploadImageButton.component({
-                  name: 'fof/watermark',
+                  name: 'hiepvq/watermark',
                 }),
               ]),
               m('fieldset', [
-                m('legend', app.translator.trans('fof-upload.admin.labels.disable-hotlink-protection.title')),
-                m('.helpText', app.translator.trans('fof-upload.admin.help_texts.disable-hotlink-protection')),
+                m('legend', app.translator.trans('hiepvq-upload.admin.labels.disable-hotlink-protection.title')),
+                m('.helpText', app.translator.trans('hiepvq-upload.admin.help_texts.disable-hotlink-protection')),
                 Switch.component(
                   {
                     state: this.values.disableHotlinkProtection() || false,
                     onchange: this.values.disableHotlinkProtection,
                   },
-                  app.translator.trans('fof-upload.admin.labels.disable-hotlink-protection.toggle')
+                  app.translator.trans('hiepvq-upload.admin.labels.disable-hotlink-protection.toggle')
                 ),
-                m('legend', app.translator.trans('fof-upload.admin.labels.disable-download-logging.title')),
-                m('.helpText', app.translator.trans('fof-upload.admin.help_texts.disable-download-logging')),
+                m('legend', app.translator.trans('hiepvq-upload.admin.labels.disable-download-logging.title')),
+                m('.helpText', app.translator.trans('hiepvq-upload.admin.help_texts.disable-download-logging')),
                 Switch.component(
                   {
                     state: this.values.disableDownloadLogging() || false,
                     onchange: this.values.disableDownloadLogging,
                   },
-                  app.translator.trans('fof-upload.admin.labels.disable-download-logging.toggle')
+                  app.translator.trans('hiepvq-upload.admin.labels.disable-download-logging.toggle')
                 ),
               ]),
               m('fieldset', [
-                m('legend', app.translator.trans('fof-upload.admin.labels.local.title')),
-                m('label', app.translator.trans('fof-upload.admin.labels.local.cdn_url')),
+                m('legend', app.translator.trans('hiepvq-upload.admin.labels.local.title')),
+                m('label', app.translator.trans('hiepvq-upload.admin.labels.local.cdn_url')),
                 m('input.FormControl', {
                   value: this.values.cdnUrl() || '',
                   oninput: withAttr('value', this.values.cdnUrl),
@@ -338,14 +338,14 @@ export default class UploadPage extends ExtensionPage {
         'imgur',
         <div className="imgur">
           <fieldset>
-            <legend>{app.translator.trans('fof-upload.admin.labels.imgur.title')}</legend>
+            <legend>{app.translator.trans('hiepvq-upload.admin.labels.imgur.title')}</legend>
             <p>
               {icon('fas fa-exclamation-circle')}{' '}
-              {app.translator.trans('fof-upload.admin.labels.imgur.tos', {
+              {app.translator.trans('hiepvq-upload.admin.labels.imgur.tos', {
                 a: <Link href="https://imgur.com/tos" external={true} target="_blank" />,
               })}
             </p>
-            <label>{app.translator.trans('fof-upload.admin.labels.imgur.client_id')}</label>
+            <label>{app.translator.trans('hiepvq-upload.admin.labels.imgur.client_id')}</label>
             <input className="FormControl" value={this.values.imgurClientId() || ''} oninput={withAttr('value', this.values.imgurClientId)} />
           </fieldset>
         </div>,
@@ -358,18 +358,18 @@ export default class UploadPage extends ExtensionPage {
         'qiniu',
         m('.qiniu', [
           m('fieldset', [
-            m('legend', app.translator.trans('fof-upload.admin.labels.qiniu.title')),
-            m('label', app.translator.trans('fof-upload.admin.labels.qiniu.key')),
+            m('legend', app.translator.trans('hiepvq-upload.admin.labels.qiniu.title')),
+            m('label', app.translator.trans('hiepvq-upload.admin.labels.qiniu.key')),
             m('input.FormControl', {
               value: this.values.qiniuKey() || '',
               oninput: withAttr('value', this.values.qiniuKey),
             }),
-            m('label', {}, app.translator.trans('fof-upload.admin.labels.qiniu.secret')),
+            m('label', {}, app.translator.trans('hiepvq-upload.admin.labels.qiniu.secret')),
             m('input.FormControl', {
               value: this.values.qiniuSecret() || '',
               oninput: withAttr('value', this.values.qiniuSecret),
             }),
-            m('label', {}, app.translator.trans('fof-upload.admin.labels.qiniu.bucket')),
+            m('label', {}, app.translator.trans('hiepvq-upload.admin.labels.qiniu.bucket')),
             m('input.FormControl', {
               value: this.values.qiniuBucket() || '',
               oninput: withAttr('value', this.values.qiniuBucket),
@@ -385,33 +385,33 @@ export default class UploadPage extends ExtensionPage {
         'aws-s3',
         m('.aws', [
           m('fieldset', [
-            m('legend', app.translator.trans('fof-upload.admin.labels.aws-s3.title')),
-            m('.helpText', app.translator.trans('fof-upload.admin.help_texts.s3_instance_profile')),
-            m('label', app.translator.trans('fof-upload.admin.labels.aws-s3.key')),
+            m('legend', app.translator.trans('hiepvq-upload.admin.labels.aws-s3.title')),
+            m('.helpText', app.translator.trans('hiepvq-upload.admin.help_texts.s3_instance_profile')),
+            m('label', app.translator.trans('hiepvq-upload.admin.labels.aws-s3.key')),
             m('input.FormControl', {
               value: this.values.awsS3Key() || '',
               oninput: withAttr('value', this.values.awsS3Key),
             }),
-            m('label', app.translator.trans('fof-upload.admin.labels.aws-s3.secret')),
+            m('label', app.translator.trans('hiepvq-upload.admin.labels.aws-s3.secret')),
             m('input.FormControl', {
               value: this.values.awsS3Secret() || '',
               oninput: withAttr('value', this.values.awsS3Secret),
             }),
-            m('label', app.translator.trans('fof-upload.admin.labels.aws-s3.bucket')),
+            m('label', app.translator.trans('hiepvq-upload.admin.labels.aws-s3.bucket')),
             m('input.FormControl', {
               value: this.values.awsS3Bucket() || '',
               oninput: withAttr('value', this.values.awsS3Bucket),
             }),
-            m('label', app.translator.trans('fof-upload.admin.labels.aws-s3.region')),
+            m('label', app.translator.trans('hiepvq-upload.admin.labels.aws-s3.region')),
             m('input.FormControl', {
               value: this.values.awsS3Region() || '',
               oninput: withAttr('value', this.values.awsS3Region),
             }),
           ]),
           m('fieldset', [
-            m('legend', app.translator.trans('fof-upload.admin.labels.aws-s3.advanced_title')),
-            m('.helpText', app.translator.trans('fof-upload.admin.help_texts.s3_compatible_storage')),
-            m('label', app.translator.trans('fof-upload.admin.labels.aws-s3.endpoint')),
+            m('legend', app.translator.trans('hiepvq-upload.admin.labels.aws-s3.advanced_title')),
+            m('.helpText', app.translator.trans('hiepvq-upload.admin.help_texts.s3_compatible_storage')),
+            m('label', app.translator.trans('hiepvq-upload.admin.labels.aws-s3.endpoint')),
             m('input.FormControl', {
               value: this.values.awsS3Endpoint() || '',
               oninput: withAttr('value', this.values.awsS3Endpoint),
@@ -421,14 +421,14 @@ export default class UploadPage extends ExtensionPage {
                 state: this.values.awsS3UsePathStyleEndpoint() || false,
                 onchange: this.values.awsS3UsePathStyleEndpoint,
               },
-              app.translator.trans('fof-upload.admin.labels.aws-s3.use_path_style_endpoint')
+              app.translator.trans('hiepvq-upload.admin.labels.aws-s3.use_path_style_endpoint')
             ),
-            m('label', app.translator.trans('fof-upload.admin.labels.aws-s3.acl')),
+            m('label', app.translator.trans('hiepvq-upload.admin.labels.aws-s3.acl')),
             m('input.FormControl', {
               value: this.values.awsS3ACL() || '',
               oninput: withAttr('value', this.values.awsS3ACL),
             }),
-            m('.helpText', app.translator.trans('fof-upload.admin.help_texts.s3_acl')),
+            m('.helpText', app.translator.trans('hiepvq-upload.admin.help_texts.s3_acl')),
           ]),
         ]),
         60

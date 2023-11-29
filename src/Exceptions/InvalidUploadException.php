@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Exceptions;
+namespace Hiepvq\Upload\Exceptions;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -40,6 +40,6 @@ class InvalidUploadException extends \Exception
 
     protected function constructMessage()
     {
-        return resolve(TranslatorInterface::class)->trans('fof-upload.api.upload_errors.'.$this->type, $this->params);
+        return resolve(TranslatorInterface::class)->trans('hiepvq-upload.api.upload_errors.'.$this->type, $this->params);
     }
 }

@@ -3,15 +3,15 @@ import UploadPage from './components/UploadPage';
 
 export * from './components';
 
-app.initializers.add('fof-upload', () => {
+app.initializers.add('hiepvq-upload', () => {
   app.extensionData
-    .for('fof-upload')
+    .for('hiepvq-upload')
     .registerPage(UploadPage)
     .registerPermission(
       {
         icon: 'far fa-file',
-        label: app.translator.trans('fof-upload.admin.permissions.upload_label'),
-        permission: 'fof-upload.upload',
+        label: app.translator.trans('hiepvq-upload.admin.permissions.upload_label'),
+        permission: 'hiepvq-upload.upload',
       },
       'start',
       50
@@ -19,8 +19,8 @@ app.initializers.add('fof-upload', () => {
     .registerPermission(
       {
         icon: 'fas fa-download',
-        label: app.translator.trans('fof-upload.admin.permissions.download_label'),
-        permission: 'fof-upload.download',
+        label: app.translator.trans('hiepvq-upload.admin.permissions.download_label'),
+        permission: 'hiepvq-upload.download',
         allowGuest: true,
       },
       'view',
@@ -29,8 +29,8 @@ app.initializers.add('fof-upload', () => {
     .registerPermission(
       {
         icon: 'fas fa-eye',
-        label: app.translator.trans('fof-upload.admin.permissions.view_user_uploads_label'),
-        permission: 'fof-upload.viewUserUploads',
+        label: app.translator.trans('hiepvq-upload.admin.permissions.view_user_uploads_label'),
+        permission: 'hiepvq-upload.viewUserUploads',
       },
       'moderate',
       50
@@ -38,8 +38,8 @@ app.initializers.add('fof-upload', () => {
     .registerPermission(
       {
         icon: 'fas fa-trash',
-        label: app.translator.trans('fof-upload.admin.permissions.delete_uploads_of_others_label'),
-        permission: 'fof-upload.deleteUserUploads',
+        label: app.translator.trans('hiepvq-upload.admin.permissions.delete_uploads_of_others_label'),
+        permission: 'hiepvq-upload.deleteUserUploads',
       },
       'moderate',
       50

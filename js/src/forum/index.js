@@ -13,11 +13,11 @@ import Model from 'flarum/common/Model';
 
 export * from './components';
 
-app.initializers.add('fof-upload', () => {
-  User.prototype.viewOthersMediaLibrary = Model.attribute('fof-upload-viewOthersMediaLibrary');
-  User.prototype.deleteOthersMediaLibrary = Model.attribute('fof-upload-deleteOthersMediaLibrary');
-  User.prototype.uploadCountCurrent = Model.attribute('fof-upload-uploadCountCurrent');
-  User.prototype.uploadCountAll = Model.attribute('fof-upload-uploadCountAll');
+app.initializers.add('hiepvq-upload', () => {
+  User.prototype.viewOthersMediaLibrary = Model.attribute('hiepvq-upload-viewOthersMediaLibrary');
+  User.prototype.deleteOthersMediaLibrary = Model.attribute('hiepvq-upload-deleteOthersMediaLibrary');
+  User.prototype.uploadCountCurrent = Model.attribute('hiepvq-upload-uploadCountCurrent');
+  User.prototype.uploadCountAll = Model.attribute('hiepvq-upload-uploadCountAll');
 
   addUploadButton();
   downloadButtonInteraction();
@@ -36,7 +36,7 @@ app.initializers.add('fof-upload', () => {
 
   // Add uploads to user page menu items
   extend(UserPage.prototype, 'navItems', function (items) {
-    const canUpload = !!app.forum.attribute('fof-upload.canUpload');
+    const canUpload = !!app.forum.attribute('hiepvq-upload.canUpload');
     const hasUploads = !!this.user.uploadCountCurrent();
 
     if (app.session.user && (app.session.user.viewOthersMediaLibrary() || (this.user === app.session.user && (canUpload || hasUploads)))) {
@@ -54,8 +54,8 @@ app.initializers.add('fof-upload', () => {
           },
           [
             this.user === app.session.user
-              ? app.translator.trans('fof-upload.forum.buttons.media')
-              : app.translator.trans('fof-upload.forum.buttons.user_uploads'),
+              ? app.translator.trans('hiepvq-upload.forum.buttons.media')
+              : app.translator.trans('hiepvq-upload.forum.buttons.user_uploads'),
             ' ',
             uploadCount > 0 ? <span className="Button-badge">{uploadCount}</span> : '',
           ]
