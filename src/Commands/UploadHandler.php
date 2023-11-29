@@ -96,8 +96,8 @@ class UploadHandler
         $command->actor->assertCan('fof-upload.upload');
 
         $savedFiles = $command->files->map(function (UploadedFileInterface $file) use ($command) {
+            $upload = $this->files->moveUploadedFileToTemp($file);
             try {
-                $upload = $this->files->moveUploadedFileToTemp($file);
 
                 try {
                     $this->mimeDetector->setFile($upload->getPathname());
