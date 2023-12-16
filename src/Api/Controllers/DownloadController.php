@@ -12,6 +12,7 @@
 
 namespace FoF\Upload\Api\Controllers;
 
+use Flarum\Http\RequestUtil;
 use Flarum\Post\PostRepository;
 use Flarum\Settings\SettingsRepositoryInterface;
 use FoF\Upload\Api\Serializers\FileSerializer;
@@ -26,47 +27,39 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class DownloadController implements RequestHandlerInterface
 {
-    public $serializer = FileSerializer::class;
+    public string $serializer = FileSerializer::class;
 
-    /**
-     * @var Dispatcher
-     */
-    protected $bus;
-    /**
-     * @var PostRepository
-     */
-    private $posts;
-    /**
-     * @var SettingsRepositoryInterface
-     */
-    private $settings;
-
-    public function __construct(Dispatcher $bus, PostRepository $posts, SettingsRepositoryInterface $settings)
-    {
-        $this->bus = $bus;
-        $this->posts = $posts;
-        $this->settings = $settings;
+    public function __construct(
+        protected Dispatcher $bus,
+        protected PostRepository $posts,
+        protected SettingsRepositoryInterface $settings
+    ) {
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $actor = $request->getAttribute('actor');
-        $uuid = Arr::get($request->getQueryParams(), 'uuid');
-        $postId = Arr::get($request->getQueryParams(), 'post');
-        $csrf = Arr::get($request->getQueryParams(), 'csrf');
+        $actor = RequestUtil::getActor($request);
+        $params = $request->getQueryParams();
+        $uuid = Arr::get($params, 'uuid');
+        $postId = Arr::get($params, 'post');
+        $csrf = Arr::get($params, 'csrf');
 
-        $post = $this->posts->findOrFail($postId, $actor);
-        $discussion = $post->discussion_id;
-
-        /** @var Session $session */
-        $session = $request->getAttribute('session');
-
-        if ($this->settings->get('fof-upload.disableHotlinkProtection') != 1 && $csrf !== $session->token()) {
-            throw new ModelNotFoundException();
+        $discussionId = null;
+        if ($postId !== null) {
+            $post = $this->posts->findOrFail($postId, $actor);
+            $discussionId = $post->discussion_id;
+            $this->validateCsrf($csrf, $request->getAttribute('session'));
         }
 
         return $this->bus->dispatch(
-            new Download($uuid, $actor, $discussion, $postId)
+            new Download($uuid, $actor, $discussionId, $postId)
         );
+    }
+
+    protected function validateCsrf(?string $csrf, Session $session): void
+    {
+        if ((bool) !$this->settings->get('fof-upload.disableHotlinkProtection') && $csrf !== $session->token()) {
+            throw new ModelNotFoundException();
+        }
     }
 }

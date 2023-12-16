@@ -12,12 +12,15 @@
 
 namespace FoF\Upload\Helpers;
 
+use Flarum\Foundation\ValidationException;
 use Flarum\Settings\SettingsRepositoryInterface;
 use FoF\Upload\Adapters\Manager;
 use FoF\Upload\Contracts\Template;
+use FoF\Upload\Contracts\UploadAdapter;
 use FoF\Upload\File;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class Util
 {
@@ -36,15 +39,12 @@ class Util
      */
     public function getAvailableUploadMethods()
     {
-        /** @var Manager $manager */
-        $manager = resolve(Manager::class);
-
-        return $manager->adapters()
+        return resolve(Manager::class)->adapters()
             ->filter(function ($available) {
                 return $available;
             })
             ->map(function ($available, $item) {
-                return resolve('translator')->trans('fof-upload.admin.upload_methods.'.$item);
+                return resolve(TranslatorInterface::class)->trans('fof-upload.admin.upload_methods.'.$item);
             });
     }
 
@@ -68,15 +68,24 @@ class Util
      */
     public function getMimeTypesConfiguration()
     {
-        $settings = resolve(SettingsRepositoryInterface::class);
-        $mimeTypes = $settings->get('fof-upload.mimeTypes');
-
-        $adapters = $this->getAvailableUploadMethods();
+        $mimeTypes = resolve(SettingsRepositoryInterface::class)->get('fof-upload.mimeTypes');
 
         return $this->getJsonValue(
             $mimeTypes,
-            collect(['^image\/.*' => ['adapter' => $adapters->flip()->last(), 'template' => 'image-preview']])
+            $this->defaultMimeTypes()
         )->filter();
+    }
+
+    public function defaultMimeTypes(): Collection
+    {
+        $adapters = $this->getAvailableUploadMethods();
+
+        return collect([
+            '^image\/.*' => [
+                'adapter'  => $adapters->flip()->last(),
+                'template' => 'image-preview',
+            ],
+        ]);
     }
 
     /**
@@ -124,9 +133,9 @@ class Util
     }
 
     /**
-     * @param string $template
+     * @param string|Template|null $template
      *
-     * @return Template|null
+     * @return Template|array|null
      */
     public function getTemplate($template)
     {
@@ -142,6 +151,60 @@ class Util
     {
         $template = $this->getTemplate($file->tag);
 
+        if (is_array($template)) {
+            return null;
+        }
+
         return $template ? $template->preview($file) : null;
+    }
+
+    public function isPrivateShared(File $model): bool
+    {
+        return $model->shared && $model->hidden;
+    }
+
+    public function getAdapterForFile(File $file): ?UploadAdapter
+    {
+        if ($this->isPrivateShared($file)) {
+            throw new ValidationException(['shared-file' => 'Private shared files are handled differently, not by an adapter.']);
+        }
+
+        return $this->getAdapterForMime($file->type);
+    }
+
+    public function getAdapterForMime(?string $mime): ?UploadAdapter
+    {
+        return $this->getAdapter(
+            Arr::get($this->getMimeConfiguration($mime), 'adapter')
+        );
+    }
+
+    /**
+     * @param $mime
+     *
+     * @return mixed
+     */
+    public function getMimeConfiguration(?string $mime)
+    {
+        return $this->getMimeTypesConfiguration()->first(function ($_, $regex) use ($mime) {
+            return preg_match("/$regex/", $mime);
+        });
+    }
+
+    /**
+     * @param ?string $adapter
+     *
+     * @return UploadAdapter|null
+     */
+    public function getAdapter(?string $adapter)
+    {
+        if (!$adapter) {
+            return null;
+        }
+
+        /** @var Manager $manager */
+        $manager = resolve(Manager::class);
+
+        return $manager->instantiate($adapter);
     }
 }

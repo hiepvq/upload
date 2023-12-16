@@ -18,29 +18,21 @@ use FoF\Upload\Contracts\Downloader;
 use FoF\Upload\Exceptions\InvalidDownloadException;
 use FoF\Upload\File;
 use GuzzleHttp\Client;
+use Illuminate\Contracts\Filesystem\Factory;
 use Laminas\Diactoros\Response\TextResponse;
 use Psr\Http\Message\ResponseInterface;
 
 class DefaultDownloader implements Downloader
 {
-    /**
-     * @var Client
-     */
-    private $api;
+    private $privateSharedDir;
 
-    public function __construct(Client $api)
-    {
-        $this->api = $api;
+    public function __construct(
+        private Client $api,
+        private Factory $factory,
+    ) {
     }
 
-    /**
-     * Whether the upload adapter works on a specific mime type.
-     *
-     * @param File $file
-     *
-     * @return bool
-     */
-    public function forFile(File $file)
+    public function forFile(File $file): bool
     {
         return true;
     }
@@ -55,11 +47,14 @@ class DefaultDownloader implements Downloader
      */
     public function download(File $file, ?Download $command = null): ResponseInterface
     {
-        if ($file->upload_method === 'local') {
-            return $this->retrieveFromLocal($file);
+        switch($file->upload_method) {
+            case 'local':
+                return $this->retrieveFromLocal($file);
+            case 'private-shared':
+                return $this->retrieveFromPrivateShared($file);
+            default:
+                return $this->retrieveFromExternal($file);
         }
-
-        return $this->retrieveFromExternal($file);
     }
 
     private function retrieveFromLocal(File $file): ResponseInterface
@@ -82,6 +77,15 @@ class DefaultDownloader implements Downloader
         }
 
         return $response;
+    }
+
+    private function retrieveFromPrivateShared(File $file): ResponseInterface
+    {
+        $this->privateSharedDir = $this->factory->disk('private-shared');
+
+        $file_contents = $this->privateSharedDir->get($file->path);
+
+        return $this->mutateHeaders(new TextResponse($file_contents), $file);
     }
 
     /**

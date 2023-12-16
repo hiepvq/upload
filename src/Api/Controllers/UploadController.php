@@ -13,8 +13,10 @@
 namespace FoF\Upload\Api\Controllers;
 
 use Flarum\Api\Controller\AbstractListController;
+use Flarum\Http\RequestUtil;
 use Flarum\Settings\SettingsRepositoryInterface;
 use FoF\Upload\Api\Serializers\FileSerializer;
+use FoF\Upload\Api\Serializers\SharedFileSerializer;
 use FoF\Upload\Commands\Upload;
 use FoF\Upload\Exceptions\InvalidUploadException;
 use FoF\Upload\Helpers\Util;
@@ -28,20 +30,10 @@ class UploadController extends AbstractListController
 {
     public $serializer = FileSerializer::class;
 
-    /**
-     * @var Dispatcher
-     */
-    protected $bus;
-
-    /**
-     * @var SettingsRepositoryInterface
-     */
-    protected $settings;
-
-    public function __construct(Dispatcher $bus, SettingsRepositoryInterface $settings)
-    {
-        $this->bus = $bus;
-        $this->settings = $settings;
+    public function __construct(
+        protected Dispatcher $bus,
+        protected SettingsRepositoryInterface $settings
+    ) {
     }
 
     /**
@@ -52,12 +44,21 @@ class UploadController extends AbstractListController
      */
     protected function data(ServerRequestInterface $request, Document $document)
     {
-        $actor = $request->getAttribute('actor');
+        $actor = RequestUtil::getActor($request);
         $files = collect(Arr::get($request->getUploadedFiles(), 'files', []));
+
+        $params = $request->getParsedBody() ?? [];
+
+        $hideFromMediaManager = $this->getOption('hidden', $params);
+        $shared = $this->getOption('shared', $params);
+
+        if ($shared) {
+            $this->serializer = SharedFileSerializer::class;
+        }
 
         /** @var Collection $collection */
         $collection = $this->bus->dispatch(
-            new Upload($files, $actor)
+            new Upload($files, $actor, $hideFromMediaManager, $shared)
         );
 
         if ($collection->isEmpty()) {
@@ -67,5 +68,12 @@ class UploadController extends AbstractListController
         }
 
         return $collection;
+    }
+
+    protected function getOption(string $option, array $params): bool
+    {
+        $value = Arr::get($params, 'options.'.$option);
+
+        return $value === 'true' || $value === true;
     }
 }

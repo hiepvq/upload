@@ -13,6 +13,7 @@
 namespace FoF\Upload\Api\Controllers;
 
 use Flarum\Api\Controller\AbstractListController;
+use Flarum\Http\RequestUtil;
 use Flarum\Http\UrlGenerator;
 use FoF\Upload\Api\Serializers\FileSerializer;
 use FoF\Upload\File;
@@ -26,19 +27,14 @@ class ListUploadsController extends AbstractListController
 
     public $sortFields = ['id'];
 
-    /**
-     * @var UrlGenerator
-     */
-    protected $url;
-
-    public function __construct(UrlGenerator $url)
-    {
-        $this->url = $url;
+    public function __construct(
+        protected UrlGenerator $url
+    ) {
     }
 
     protected function data(ServerRequestInterface $request, Document $document)
     {
-        $actor = $request->getAttribute('actor');
+        $actor = RequestUtil::getActor($request);
         $params = $request->getQueryParams();
 
         // User is signed in
@@ -55,10 +51,7 @@ class ListUploadsController extends AbstractListController
         $limit = $this->extractLimit($request);
         $offset = $this->extractOffset($request);
 
-        // Build query
-        $query = File::query()
-            ->where('actor_id', $filterByUserId)
-            ->where('hide_from_media_manager', false);
+        $query = File::filesFor($filterByUserId, $actor);
 
         $results = $query
             ->skip($offset)
