@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,13 +10,13 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Downloader;
+namespace Hiepvq\Upload\Downloader;
 
 use Flarum\Foundation\Paths;
-use FoF\Upload\Commands\Download;
-use FoF\Upload\Contracts\Downloader;
-use FoF\Upload\Exceptions\InvalidDownloadException;
-use FoF\Upload\File;
+use Hiepvq\Upload\Commands\Download;
+use Hiepvq\Upload\Contracts\Downloader;
+use Hiepvq\Upload\Exceptions\InvalidDownloadException;
+use Hiepvq\Upload\File;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Filesystem\Factory;
 use Laminas\Diactoros\Response\TextResponse;

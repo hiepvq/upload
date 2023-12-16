@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Exceptions;
+namespace Hiepvq\Upload\Exceptions;
 
 use Flarum\Foundation\ErrorHandling\HandledError;
 
@@ -20,7 +20,7 @@ class ExceptionHandler
     {
         return (new HandledError(
             $e,
-            "fof-upload.$e->type",
+            "hiepvq-upload.$e->type",
             $e->status
         ))->withDetails($this->errorDetails($e));
     }

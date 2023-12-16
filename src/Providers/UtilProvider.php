@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,11 +10,11 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Providers;
+namespace Hiepvq\Upload\Providers;
 
 use Flarum\Foundation\AbstractServiceProvider;
-use FoF\Upload\Helpers\Util;
-use FoF\Upload\Templates;
+use Hiepvq\Upload\Helpers\Util;
+use Hiepvq\Upload\Templates;
 use Illuminate\Contracts\Container\Container;
 
 class UtilProvider extends AbstractServiceProvider

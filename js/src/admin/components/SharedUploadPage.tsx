@@ -24,15 +24,15 @@ export default class SharedUploadPage<CustomAttrs extends IPageAttrs = IPageAttr
     return {
       className: 'SharedUploadPage--header',
       icon: 'fas fa-file-upload',
-      title: app.translator.trans('fof-upload.admin.shared-uploads.title'),
-      description: app.translator.trans('fof-upload.admin.shared-uploads.description'),
+      title: app.translator.trans('hiepvq-upload.admin.shared-uploads.title'),
+      description: app.translator.trans('hiepvq-upload.admin.shared-uploads.description'),
     };
   }
 
   content(): Mithril.Children {
     return (
       <div className="SharedUploadPage--content">
-        <p className="helpText">{app.translator.trans('fof-upload.admin.shared-uploads.introduction')}</p>
+        <p className="helpText">{app.translator.trans('hiepvq-upload.admin.shared-uploads.introduction')}</p>
         <hr />
         <div className="SharedUploadPage--main-actions">{this.mainActionItems().toArray()}</div>
         <hr />
@@ -59,7 +59,7 @@ export default class SharedUploadPage<CustomAttrs extends IPageAttrs = IPageAttr
     items.add(
       'upload-new',
       <Button className="Button" icon="fas fa-upload" onclick={() => this.showUploadModal()}>
-        {app.translator.trans('fof-upload.admin.shared-uploads.upload-new-button')}
+        {app.translator.trans('hiepvq-upload.admin.shared-uploads.upload-new-button')}
       </Button>
     );
 

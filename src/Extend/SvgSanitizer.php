@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Extend;
+namespace Hiepvq\Upload\Extend;
 
 use Flarum\Extend\ExtenderInterface;
 use Flarum\Extension\Extension;
@@ -56,19 +56,19 @@ class SvgSanitizer implements ExtenderInterface
 
     public function extend(Container $container, Extension $extension = null)
     {
-        $container->extend('fof.upload.sanitizer.svg_allowed_attrs', function ($items): array {
+        $container->extend('hiepvq.upload.sanitizer.svg_allowed_attrs', function ($items): array {
             return array_merge($items, $this->allowedAttrs);
         });
 
-        $container->extend('fof.upload.sanitizer.svg_disallowed_attrs', function ($items): array {
+        $container->extend('hiepvq.upload.sanitizer.svg_disallowed_attrs', function ($items): array {
             return array_merge($items, $this->removeAttrs);
         });
 
-        $container->extend('fof.upload.sanitizer.svg_allowed_tags', function ($items): array {
+        $container->extend('hiepvq.upload.sanitizer.svg_allowed_tags', function ($items): array {
             return array_merge($items, $this->allowedTags);
         });
 
-        $container->extend('fof.upload.sanitizer.svg_disallowed_tags', function ($items): array {
+        $container->extend('hiepvq.upload.sanitizer.svg_disallowed_tags', function ($items): array {
             return array_merge($items, $this->removeTags);
         });
     }

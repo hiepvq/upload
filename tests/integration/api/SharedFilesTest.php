@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,11 +10,11 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Tests\integration\api;
+namespace Hiepvq\Upload\Tests\integration\api;
 
 use Flarum\Testing\integration\RetrievesAuthorizedUsers;
-use FoF\Upload\File;
-use FoF\Upload\Tests\EnhancedTestCase;
+use Hiepvq\Upload\File;
+use Hiepvq\Upload\Tests\EnhancedTestCase;
 
 class SharedFilesTest extends EnhancedTestCase
 {
@@ -25,7 +25,7 @@ class SharedFilesTest extends EnhancedTestCase
     {
         parent::setUp();
 
-        $this->extension('fof-upload');
+        $this->extension('hiepvq-upload');
 
         $this->prepareDatabase([
             'users' => [
@@ -36,7 +36,7 @@ class SharedFilesTest extends EnhancedTestCase
                 ['user_id' => 3, 'group_id' => 4],
             ],
             'group_permission' => [
-                ['permission' => 'fof-upload.upload-shared-files', 'group_id' => 4],
+                ['permission' => 'hiepvq-upload.upload-shared-files', 'group_id' => 4],
             ],
         ]);
     }
@@ -47,7 +47,7 @@ class SharedFilesTest extends EnhancedTestCase
     public function list_shared_files()
     {
         $response = $this->send(
-            $this->request('GET', '/api/fof/upload/shared-files')
+            $this->request('GET', '/api/hiepvq/upload/shared-files')
         );
 
         $this->assertEquals(200, $response->getStatusCode());
@@ -69,7 +69,7 @@ class SharedFilesTest extends EnhancedTestCase
     public function user_with_permission_can_upload_a_shared_file_and_is_not_hidden_by_default(int $userId)
     {
         $response = $this->send(
-            $this->request('POST', '/api/fof/upload', [
+            $this->request('POST', '/api/hiepvq/upload', [
                 'authenticatedAs' => $userId,
                 'multipart'       => [
                     $this->uploadFile($this->fixtures('MilkyWay.jpg')),
@@ -116,7 +116,7 @@ class SharedFilesTest extends EnhancedTestCase
     public function user_with_permission_can_upload_a_shared_file_and_is_hidden_if_requested(int $userId)
     {
         $response = $this->send(
-            $this->request('POST', '/api/fof/upload', [
+            $this->request('POST', '/api/hiepvq/upload', [
                 'authenticatedAs' => $userId,
                 'multipart'       => [
                     $this->uploadFile($this->fixtures('MilkyWay.jpg')),
@@ -162,7 +162,7 @@ class SharedFilesTest extends EnhancedTestCase
     public function shared_hidden_files_are_proxied_via_our_controller()
     {
         $response = $this->send(
-            $this->request('POST', '/api/fof/upload', [
+            $this->request('POST', '/api/hiepvq/upload', [
                 'authenticatedAs' => 1,
                 'multipart'       => [
                     $this->uploadFile($this->fixtures('MilkyWay.jpg')),
@@ -182,14 +182,14 @@ class SharedFilesTest extends EnhancedTestCase
 
         $downloadUrl = $json['data'][0]['attributes']['url'];
 
-        $this->assertStringContainsString('/api/fof/download/', $downloadUrl);
+        $this->assertStringContainsString('/api/hiepvq/download/', $downloadUrl);
 
         $file = File::byUuid($json['data'][0]['attributes']['uuid'])->first();
 
         $this->assertNotNull($file);
 
         $response = $this->send(
-            $this->request('GET', '/api/fof/download/'.$file->uuid, [
+            $this->request('GET', '/api/hiepvq/download/'.$file->uuid, [
                 'authenticatedAs' => 1,
             ])
         );
@@ -205,7 +205,7 @@ class SharedFilesTest extends EnhancedTestCase
     public function users_with_permission_can_upload_a_shared_file_and_then_delete_it(int $userId)
     {
         $response = $this->send(
-            $this->request('POST', '/api/fof/upload', [
+            $this->request('POST', '/api/hiepvq/upload', [
                 'authenticatedAs' => $userId,
                 'multipart'       => [
                     $this->uploadFile($this->fixtures('MilkyWay.jpg')),
@@ -227,7 +227,7 @@ class SharedFilesTest extends EnhancedTestCase
         $this->assertNotNull($file);
 
         $response = $this->send(
-            $this->request('DELETE', '/api/fof/upload/delete/'.$file->uuid, [
+            $this->request('DELETE', '/api/hiepvq/upload/delete/'.$file->uuid, [
                 'authenticatedAs' => $userId,
             ])
         );

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,13 +10,13 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Api\Controllers;
+namespace Hiepvq\Upload\Api\Controllers;
 
 use Flarum\Api\Controller\AbstractListController;
 use Flarum\Http\RequestUtil;
 use Flarum\Http\UrlGenerator;
-use FoF\Upload\Api\Serializers\SharedFileSerializer;
-use FoF\Upload\File;
+use Hiepvq\Upload\Api\Serializers\SharedFileSerializer;
+use Hiepvq\Upload\File;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 
@@ -43,7 +43,7 @@ class ListSharedUploadsController extends AbstractListController
         // Build query
         $query = File::sharedFiles();
 
-        if ($actor->cannot('fof-upload.upload-shared-files')) {
+        if ($actor->cannot('hiepvq-upload.upload-shared-files')) {
             $query->where('hidden', false);
         }
 
@@ -63,7 +63,7 @@ class ListSharedUploadsController extends AbstractListController
 
         // Add pagination to the request
         $document->addPaginationLinks(
-            $this->url->to('api')->route('fof-upload.shared-files.index'),
+            $this->url->to('api')->route('hiepvq-upload.shared-files.index'),
             $params,
             $offset,
             $limit,

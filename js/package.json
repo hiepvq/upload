@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "@fof/upload",
+    "name": "@hiepvq/upload",
     "prettier": "@flarum/prettier-config",
     "dependencies": {
         "@flarum/prettier-config": "^1.0.0",

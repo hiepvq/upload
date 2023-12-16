@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Repositories;
+namespace Hiepvq\Upload\Repositories;
 
 use Carbon\Carbon;
 use enshrined\svgSanitize\Sanitizer;
@@ -19,14 +19,14 @@ use Flarum\Foundation\ValidationException;
 use Flarum\Post\Post;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\User\User;
-use FoF\Upload\Adapters\Manager;
-use FoF\Upload\Commands\Download as DownloadCommand;
-use FoF\Upload\Contracts\UploadAdapter;
-use FoF\Upload\Download;
-use FoF\Upload\Events\File\IsSlugged;
-use FoF\Upload\Exceptions\InvalidUploadException;
-use FoF\Upload\File;
-use FoF\Upload\Validators\UploadValidator;
+use Hiepvq\Upload\Adapters\Manager;
+use Hiepvq\Upload\Commands\Download as DownloadCommand;
+use Hiepvq\Upload\Contracts\UploadAdapter;
+use Hiepvq\Upload\Download;
+use Hiepvq\Upload\Events\File\IsSlugged;
+use Hiepvq\Upload\Exceptions\InvalidUploadException;
+use Hiepvq\Upload\File;
+use Hiepvq\Upload\Validators\UploadValidator;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Arr;
@@ -117,7 +117,7 @@ class FileRepository
          * Fatal error: Uncaught Laminas\HttpHandlerRunner\Exception\EmitterException:
          * Output has been emitted previously; cannot emit response
          */
-        $tempFile = @tempnam($this->path.'/tmp', 'fof.upload.');
+        $tempFile = @tempnam($this->path.'/tmp', 'hiepvq.upload.');
         $upload->moveTo($tempFile);
 
         $file = new Upload(
@@ -167,7 +167,7 @@ class FileRepository
 
     protected function determineExtension(Upload $upload): string
     {
-        $whitelistedClientExtensions = explode(',', $this->settings->get('fof-upload.whitelistedClientExtensions', ''));
+        $whitelistedClientExtensions = explode(',', $this->settings->get('hiepvq-upload.whitelistedClientExtensions', ''));
 
         $originalClientExtension = $upload->getClientOriginalExtension();
 
@@ -339,7 +339,7 @@ class FileRepository
         if (!$cleanSvg || $cleanSvg === false) {
             //TODO maybe expose the error list via ValidationException?
             //$issues = $this->sanitizer->getXmlIssues();
-            throw new ValidationException(['upload' => $this->translator->trans('fof-upload.api.upload_errors.svg_failure')]);
+            throw new ValidationException(['upload' => $this->translator->trans('hiepvq-upload.api.upload_errors.svg_failure')]);
         }
 
         file_put_contents($file->getPathname(), $cleanSvg, LOCK_EX);
@@ -367,7 +367,7 @@ class FileRepository
 
             return mime_content_type($file->getPathname());
         } catch (MimeDetectorException|\Exception $e) {
-            throw new ValidationException(['upload' => $this->translator->trans('fof-upload.api.upload_errors.could_not_detect_mime')]);
+            throw new ValidationException(['upload' => $this->translator->trans('hiepvq-upload.api.upload_errors.could_not_detect_mime')]);
         }
     }
 

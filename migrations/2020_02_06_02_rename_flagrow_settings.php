@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -40,7 +40,7 @@ return [
         ] as $key) {
             $db->table('settings')
                 ->where('key', 'flagrow.upload.'.$key)
-                ->update(['key' => 'fof-upload.'.$key]);
+                ->update(['key' => 'hiepvq-upload.'.$key]);
         }
     },
     'down' => function (Builder $schema) {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -15,11 +15,11 @@ use Illuminate\Database\Schema\Builder;
 
 return [
     'up' => function (Builder $schema) {
-        if ($schema->hasTable('fof_upload_downloads')) {
+        if ($schema->hasTable('hiepvq_upload_downloads')) {
             return;
         }
 
-        $schema->create('fof_upload_downloads', function (Blueprint $table) {
+        $schema->create('hiepvq_upload_downloads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('file_id');
             $table->unsignedInteger('discussion_id')->nullable();
@@ -29,7 +29,7 @@ return [
 
             $table->foreign('file_id')
                 ->references('id')
-                ->on('fof_upload_files')
+                ->on('hiepvq_upload_files')
                 ->onDelete('cascade');
 
             $table->foreign('discussion_id')
@@ -44,6 +44,6 @@ return [
         });
     },
     'down' => function (Builder $schema) {
-        $schema->dropIfExists('fof_upload_downloads');
+        $schema->dropIfExists('hiepvq_upload_downloads');
     },
 ];
