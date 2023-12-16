@@ -35,7 +35,7 @@ export default class Uploader {
     return app
       .request({
         method: 'POST',
-        url: app.forum.attribute('apiUrl') + '/hiepvq/upload',
+        url: app.forum.attribute('apiUrl') + '/fof/upload',
         // prevent JSON.stringify'ing the form data in the XHR call
         serialize: (raw) => raw,
         body,
@@ -47,7 +47,7 @@ export default class Uploader {
 
         const e = error.response.errors[0];
 
-        if (!e.code.includes('hiepvq-upload')) {
+        if (!e.code.includes('fof-upload')) {
           throw error;
         }
 

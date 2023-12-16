@@ -1,4 +1,4 @@
-<div class="hiepvq-download row" data-hiepvq-upload-download-uuid="{@uuid}">
+<div class="fof-download row" data-fof-upload-download-uuid="{@uuid}">
     <div class="card">
         <div class="wrapper" style="background: url({@url}) center / cover no-repeat">
             <div class="header">

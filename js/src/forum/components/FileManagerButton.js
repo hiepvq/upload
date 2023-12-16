@@ -7,9 +7,9 @@ import Tooltip from 'flarum/common/components/Tooltip';
 export default class FileManagerButton extends Component {
   view() {
     return (
-      <Tooltip text={app.translator.trans('hiepvq-upload.forum.buttons.media')}>
+      <Tooltip text={app.translator.trans('fof-upload.forum.buttons.media')}>
         {Button.component({
-          className: 'Button hiepvq-upload-button Button--icon',
+          className: 'Button fof-upload-button Button--icon',
           onclick: this.fileManagerButtonClicked.bind(this),
           icon: 'fas fa-photo-video',
         })}

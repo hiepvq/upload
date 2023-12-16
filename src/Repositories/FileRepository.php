@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,21 +10,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Repositories;
+namespace FoF\Upload\Repositories;
 
 use Carbon\Carbon;
 use Flarum\Foundation\Paths;
 use Flarum\Post\Post;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\User\User;
-use Hiepvq\Upload\Adapters\Manager;
-use Hiepvq\Upload\Commands\Download as DownloadCommand;
-use Hiepvq\Upload\Contracts\UploadAdapter;
-use Hiepvq\Upload\Download;
-use Hiepvq\Upload\Events\File\IsSlugged;
-use Hiepvq\Upload\Exceptions\InvalidUploadException;
-use Hiepvq\Upload\File;
-use Hiepvq\Upload\Validators\UploadValidator;
+use FoF\Upload\Adapters\Manager;
+use FoF\Upload\Commands\Download as DownloadCommand;
+use FoF\Upload\Contracts\UploadAdapter;
+use FoF\Upload\Download;
+use FoF\Upload\Events\File\IsSlugged;
+use FoF\Upload\Exceptions\InvalidUploadException;
+use FoF\Upload\File;
+use FoF\Upload\Validators\UploadValidator;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Str;
@@ -102,7 +102,7 @@ class FileRepository
          * Fatal error: Uncaught Laminas\HttpHandlerRunner\Exception\EmitterException:
          * Output has been emitted previously; cannot emit response
          */
-        $tempFile = @tempnam($this->path.'/tmp', 'hiepvq.upload.');
+        $tempFile = @tempnam($this->path.'/tmp', 'fof.upload.');
         $upload->moveTo($tempFile);
 
         $file = new Upload(
@@ -152,7 +152,7 @@ class FileRepository
 
     protected function determineExtension(Upload $upload): string
     {
-        $whitelistedClientExtensions = explode(',', $this->settings->get('hiepvq-upload.whitelistedClientExtensions', ''));
+        $whitelistedClientExtensions = explode(',', $this->settings->get('fof-upload.whitelistedClientExtensions', ''));
 
         $originalClientExtension = $upload->getClientOriginalExtension();
 

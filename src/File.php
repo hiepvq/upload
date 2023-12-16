@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,14 +10,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload;
+namespace FoF\Upload;
 
 use Carbon\Carbon;
 use Flarum\Database\AbstractModel;
 use Flarum\Post\Post;
 use Flarum\User\User;
-use Hiepvq\Upload\Contracts\Template;
-use Hiepvq\Upload\Contracts\UploadAdapter;
+use FoF\Upload\Contracts\Template;
+use FoF\Upload\Contracts\UploadAdapter;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
@@ -43,7 +43,7 @@ use Illuminate\Support\Str;
  */
 class File extends AbstractModel
 {
-    protected $table = 'hiepvq_upload_files';
+    protected $table = 'fof_upload_files';
     protected $appends = ['humanSize'];
     protected $casts = [
         'hide_from_media_manager' => 'boolean',
@@ -56,7 +56,7 @@ class File extends AbstractModel
 
     public function posts()
     {
-        return $this->belongsToMany(Post::class, 'hiepvq_upload_file_posts');
+        return $this->belongsToMany(Post::class, 'fof_upload_file_posts');
     }
 
     public function downloads()

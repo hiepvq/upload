@@ -1,4 +1,4 @@
-name: Hiepvq Upload PHP
+name: FoF Upload PHP
 
 on: [workflow_dispatch, push, pull_request]
 

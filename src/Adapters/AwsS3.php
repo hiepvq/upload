@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,11 +10,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Adapters;
+namespace FoF\Upload\Adapters;
 
 use Flarum\Settings\SettingsRepositoryInterface;
-use Hiepvq\Upload\Contracts\UploadAdapter;
-use Hiepvq\Upload\File;
+use FoF\Upload\Contracts\UploadAdapter;
+use FoF\Upload\File;
 use Illuminate\Support\Arr;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Config;
@@ -32,7 +32,7 @@ class AwsS3 extends Flysystem implements UploadAdapter
         $settings = resolve(SettingsRepositoryInterface::class);
 
         $config = new Config();
-        if ($acl = $settings->get('hiepvq-upload.awsS3ACL')) {
+        if ($acl = $settings->get('fof-upload.awsS3ACL')) {
             $config->set('ACL', $acl);
         }
 
@@ -44,7 +44,7 @@ class AwsS3 extends Flysystem implements UploadAdapter
         /** @var SettingsRepositoryInterface $settings */
         $settings = resolve(SettingsRepositoryInterface::class);
 
-        $cdnUrl = $settings->get('hiepvq-upload.cdnUrl');
+        $cdnUrl = $settings->get('fof-upload.cdnUrl');
 
         if (!$cdnUrl) {
             $region = $this->adapter->getClient()->getRegion();

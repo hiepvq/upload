@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,11 +10,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Api\Serializers;
+namespace FoF\Upload\Api\Serializers;
 
 use Flarum\Api\Serializer\AbstractSerializer;
-use Hiepvq\Upload\File;
-use Hiepvq\Upload\Helpers\Util;
+use FoF\Upload\File;
+use FoF\Upload\Helpers\Util;
 
 class FileSerializer extends AbstractSerializer
 {

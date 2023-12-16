@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,12 +10,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Api\Controllers;
+namespace FoF\Upload\Api\Controllers;
 
 use Flarum\Api\Controller\AbstractListController;
 use Flarum\Http\UrlGenerator;
-use Hiepvq\Upload\Api\Serializers\FileSerializer;
-use Hiepvq\Upload\File;
+use FoF\Upload\Api\Serializers\FileSerializer;
+use FoF\Upload\File;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
@@ -48,7 +48,7 @@ class ListUploadsController extends AbstractListController
 
         // Can this user load other their files?
         if (intval($filterByUserId) !== $actor->id) {
-            $actor->assertCan('hiepvq-upload.viewUserUploads');
+            $actor->assertCan('fof-upload.viewUserUploads');
         }
 
         // Params
@@ -76,7 +76,7 @@ class ListUploadsController extends AbstractListController
 
         // Add pagination to the request
         $document->addPaginationLinks(
-            $this->url->to('api')->route('hiepvq-upload.list'),
+            $this->url->to('api')->route('fof-upload.list'),
             $params,
             $offset,
             $limit,

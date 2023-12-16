@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,12 +10,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Api\Controllers;
+namespace FoF\Upload\Api\Controllers;
 
 use Flarum\Foundation\ValidationException;
 use Flarum\User\Exception\PermissionDeniedException;
 use Flarum\User\User;
-use Hiepvq\Upload\File;
+use FoF\Upload\File;
 use Illuminate\Support\Arr;
 use Laminas\Diactoros\Response\EmptyResponse;
 use Psr\Http\Message\ResponseInterface;
@@ -39,7 +39,7 @@ class HideUploadFromMediaManagerController implements RequestHandlerInterface
         $fileUpload = File::where('uuid', $uuid)->firstOrFail();
 
         // If the actor does not own the file and the actor does not have edit uploads of others permission..
-        if ($actor->id !== $fileUpload->actor_id && !$actor->hasPermission('hiepvq-upload.deleteUserUploads')) {
+        if ($actor->id !== $fileUpload->actor_id && !$actor->hasPermission('fof-upload.deleteUserUploads')) {
             throw new PermissionDeniedException();
         }
 

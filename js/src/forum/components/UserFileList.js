@@ -38,11 +38,11 @@ export default class UserFileList extends Component {
     const state = app.fileListState;
 
     return (
-      <div className="hiepvq-upload-file-list" aria-live="polite">
+      <div className="fof-upload-file-list" aria-live="polite">
         {/* Loading */}
         {state.isLoading() && state.files.length === 0 && (
-          <div className={'hiepvq-upload-loading'}>
-            {app.translator.trans('hiepvq-upload.forum.file_list.loading')}
+          <div className={'fof-upload-loading'}>
+            {app.translator.trans('fof-upload.forum.file_list.loading')}
 
             <LoadingIndicator />
           </div>
@@ -50,16 +50,16 @@ export default class UserFileList extends Component {
 
         {/* Empty personal file list */}
         {this.inModal && state.empty() && (
-          <p className="hiepvq-upload-empty">
-            <i className="fas fa-cloud-upload-alt hiepvq-upload-empty-icon" />
-            {app.translator.trans(`hiepvq-upload.forum.file_list.modal_empty_${app.screen() !== 'phone' ? 'desktop' : 'phone'}`)}
+          <p className="fof-upload-empty">
+            <i className="fas fa-cloud-upload-alt fof-upload-empty-icon" />
+            {app.translator.trans(`fof-upload.forum.file_list.modal_empty_${app.screen() !== 'phone' ? 'desktop' : 'phone'}`)}
           </p>
         )}
 
         {/* Empty file list */}
         {!this.inModal && state.empty() && (
           <div className="Placeholder">
-            <p className="hiepvq-upload-empty">{app.translator.trans('hiepvq-upload.forum.file_list.empty')}</p>
+            <p className="fof-upload-empty">{app.translator.trans('fof-upload.forum.file_list.empty')}</p>
           </div>
         )}
 
@@ -70,11 +70,11 @@ export default class UserFileList extends Component {
             const fileSelectable = this.restrictFileType ? this.isSelectable(file) : true;
 
             const fileClassNames = classList([
-              'hiepvq-file',
+              'fof-file',
               // File is image
-              fileIcon === 'image' && 'hiepvq-file-type-image',
+              fileIcon === 'image' && 'fof-file-type-image',
               // File is selected
-              this.attrs.selectedFiles && this.attrs.selectedFiles.indexOf(file.id()) >= 0 && 'hiepvq-file-selected',
+              this.attrs.selectedFiles && this.attrs.selectedFiles.indexOf(file.id()) >= 0 && 'fof-file-selected',
             ]);
 
             /**
@@ -89,9 +89,9 @@ export default class UserFileList extends Component {
               <li aria-busy={isFileHiding}>
                 {app.session.user && (this.user === app.session.user || app.session.user.deleteOthersMediaLibrary()) && (
                   <Button
-                    className="Button Button--icon hiepvq-file-delete"
+                    className="Button Button--icon fof-file-delete"
                     icon="far fa-trash-alt"
-                    aria-label={app.translator.trans('hiepvq-upload.forum.file_list.delete_file_a11y_label', { fileName })}
+                    aria-label={app.translator.trans('fof-upload.forum.file_list.delete_file_a11y_label', { fileName })}
                     disabled={isFileHiding}
                     onclick={this.hideFile.bind(this, file)}
                   />
@@ -101,13 +101,13 @@ export default class UserFileList extends Component {
                   className={fileClassNames}
                   onclick={() => this.onFileClick(file)}
                   disabled={!fileSelectable || isFileHiding}
-                  aria-label={extractText(app.translator.trans('hiepvq-upload.forum.file_list.select_file_a11y_label', { fileName }))}
+                  aria-label={extractText(app.translator.trans('fof-upload.forum.file_list.select_file_a11y_label', { fileName }))}
                 >
                   <figure>
                     {fileIcon === 'image' ? (
                       <img
                         src={file.url()}
-                        className="hiepvq-file-image-preview"
+                        className="fof-file-image-preview"
                         draggable={false}
                         // Images should always have an `alt`, even if empty!
                         //
@@ -119,7 +119,7 @@ export default class UserFileList extends Component {
                       />
                     ) : (
                       <span
-                        className="hiepvq-file-icon"
+                        className="fof-file-icon"
                         // Prevents a screen-reader from traversing this node.
                         //
                         // This is a placeholder for when no preview is available,
@@ -132,10 +132,10 @@ export default class UserFileList extends Component {
                       </span>
                     )}
 
-                    <figcaption className="hiepvq-file-name">{fileName}</figcaption>
+                    <figcaption className="fof-file-name">{fileName}</figcaption>
 
                     {isFileHiding && (
-                      <span class="hiepvq-file-loading" role="status" aria-label={app.translator.trans('hiepvq-upload.forum.file_list.hide_file.loading')}>
+                      <span class="fof-file-loading" role="status" aria-label={app.translator.trans('fof-upload.forum.file_list.hide_file.loading')}>
                         <LoadingIndicator />
                       </span>
                     )}
@@ -148,9 +148,9 @@ export default class UserFileList extends Component {
 
         {/* Load more files */}
         {state.hasMoreResults() && (
-          <div className={'hiepvq-load-more-files'}>
+          <div className={'fof-load-more-files'}>
             <Button className={'Button Button--primary'} disabled={state.isLoading()} loading={state.isLoading()} onclick={() => state.loadMore()}>
-              {app.translator.trans('hiepvq-upload.forum.file_list.load_more_files_btn')}
+              {app.translator.trans('fof-upload.forum.file_list.load_more_files_btn')}
             </Button>
           </div>
         )}
@@ -227,24 +227,24 @@ export default class UserFileList extends Component {
     this.filesBeingHidden.push(uuid);
 
     const confirmHide = confirm(
-      extractText(app.translator.trans('hiepvq-upload.forum.file_list.hide_file.hide_confirmation', { fileName: file.baseName() }))
+      extractText(app.translator.trans('fof-upload.forum.file_list.hide_file.hide_confirmation', { fileName: file.baseName() }))
     );
 
     if (confirmHide) {
       app
         .request({
           method: 'PATCH',
-          url: `${app.forum.attribute('apiUrl')}/hiepvq/upload/hide`,
+          url: `${app.forum.attribute('apiUrl')}/fof/upload/hide`,
           body: { uuid },
         })
         .then(() => {
-          app.alerts.show(Alert, { type: 'success' }, app.translator.trans('hiepvq-upload.forum.file_list.hide_file.hide_success'));
+          app.alerts.show(Alert, { type: 'success' }, app.translator.trans('fof-upload.forum.file_list.hide_file.hide_success'));
         })
         .catch(() => {
           app.alerts.show(
             Alert,
             { type: 'error' },
-            app.translator.trans('hiepvq-upload.forum.file_list.hide_file.hide_fail', { fileName: file.fileName() })
+            app.translator.trans('fof-upload.forum.file_list.hide_file.hide_fail', { fileName: file.fileName() })
           );
         })
         .then(() => {

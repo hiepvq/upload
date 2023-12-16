@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,19 +10,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Providers;
+namespace FoF\Upload\Providers;
 
 use Flarum\Foundation\AbstractServiceProvider;
-use Hiepvq\Upload\Commands\DownloadHandler;
-use Hiepvq\Upload\Downloader\DefaultDownloader;
-use Hiepvq\Upload\Helpers\Util;
-use Hiepvq\Upload\Templates\BbcodeImageTemplate;
-use Hiepvq\Upload\Templates\FileTemplate;
-use Hiepvq\Upload\Templates\ImagePreviewTemplate;
-use Hiepvq\Upload\Templates\ImageTemplate;
-use Hiepvq\Upload\Templates\JustUrlTemplate;
-use Hiepvq\Upload\Templates\MarkdownImageTemplate;
-use Hiepvq\Upload\Templates\TextPreviewTemplate;
+use FoF\Upload\Commands\DownloadHandler;
+use FoF\Upload\Downloader\DefaultDownloader;
+use FoF\Upload\Helpers\Util;
+use FoF\Upload\Templates\BbcodeImageTemplate;
+use FoF\Upload\Templates\FileTemplate;
+use FoF\Upload\Templates\ImagePreviewTemplate;
+use FoF\Upload\Templates\ImageTemplate;
+use FoF\Upload\Templates\JustUrlTemplate;
+use FoF\Upload\Templates\MarkdownImageTemplate;
+use FoF\Upload\Templates\TextPreviewTemplate;
 
 class DownloadProvider extends AbstractServiceProvider
 {

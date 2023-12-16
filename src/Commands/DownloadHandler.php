@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,14 +10,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Commands;
+namespace FoF\Upload\Commands;
 
 use Flarum\Settings\SettingsRepositoryInterface;
-use Hiepvq\Upload\Contracts\Downloader;
-use Hiepvq\Upload\Events\File\WasLoaded;
-use Hiepvq\Upload\Events\File\WillBeDownloaded;
-use Hiepvq\Upload\Exceptions\InvalidDownloadException;
-use Hiepvq\Upload\Repositories\FileRepository;
+use FoF\Upload\Contracts\Downloader;
+use FoF\Upload\Events\File\WasLoaded;
+use FoF\Upload\Events\File\WillBeDownloaded;
+use FoF\Upload\Exceptions\InvalidDownloadException;
+use FoF\Upload\Repositories\FileRepository;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Arr;
@@ -59,7 +59,7 @@ class DownloadHandler
      */
     public function handle(Download $command)
     {
-        $command->actor->assertCan('hiepvq-upload.download');
+        $command->actor->assertCan('fof-upload.download');
 
         $file = $this->files->findByUuid($command->uuid);
 
@@ -81,7 +81,7 @@ class DownloadHandler
 
                 $download = null;
 
-                if ($this->settings->get('hiepvq-upload.disableDownloadLogging') != 1) {
+                if ($this->settings->get('fof-upload.disableDownloadLogging') != 1) {
                     $download = $this->files->downloadedEntry($file, $command);
                 }
 

@@ -1,5 +1,5 @@
-.hiepvq-upload-file-list {
-    .hiepvq-upload-loading {
+.fof-upload-file-list {
+    .fof-upload-loading {
         font-size: 20px;
         text-align: center;
 
@@ -8,7 +8,7 @@
         }
     }
 
-    .hiepvq-upload-empty {
+    .fof-upload-empty {
         font-size: 20px;
         text-align: center;
 
@@ -16,7 +16,7 @@
             padding: 40px 0;
         }
 
-        .hiepvq-upload-empty-icon {
+        .fof-upload-empty-icon {
             display: block;
             margin-bottom: 20px;
             font-size: 35px;
@@ -52,7 +52,7 @@
         }
     }
 
-    .hiepvq-file-delete {
+    .fof-file-delete {
         position: absolute;
         top: 4px;
         right: 4px;
@@ -73,7 +73,7 @@
         }
     }
 
-    .hiepvq-file {
+    .fof-file {
         display: block;
 
         position: absolute;
@@ -105,9 +105,9 @@
 
             // We handle opacity like this
             figure {
-                .hiepvq-file-icon,
-                .hiepvq-file-image-preview,
-                .hiepvq-file-name {
+                .fof-file-icon,
+                .fof-file-image-preview,
+                .fof-file-name {
                     opacity: 0.25;
                 }
             }
@@ -131,7 +131,7 @@
             margin: 0;
             padding: 0;
 
-            .hiepvq-file-icon {
+            .fof-file-icon {
                 grid-area: ~"1 / 1 / 3 / 1";
                 font-size: 45px;
 
@@ -141,7 +141,7 @@
                 justify-content: center;
             }
 
-            .hiepvq-file-loading {
+            .fof-file-loading {
                 grid-area: ~"1 / 1 / 3 / 1";
 
                 // Centre indicator within container
@@ -150,7 +150,7 @@
                 justify-content: center;
             }
 
-            img.hiepvq-file-image-preview {
+            img.fof-file-image-preview {
                 grid-area: ~"1 / 1 / 3 / 1";
 
                 // Fixes rendering bug in Blink where different
@@ -161,7 +161,7 @@
                 object-fit: scale-down;
             }
 
-            figcaption.hiepvq-file-name {
+            figcaption.fof-file-name {
                 grid-area: ~"2 / 1 / 3 / 1";
 
                 padding: 10px;
@@ -172,19 +172,19 @@
             }
         }
 
-        &.hiepvq-file-type-image {
-            .hiepvq-file-name {
+        &.fof-file-type-image {
+            .fof-file-name {
                 background: fade(@body-bg, 80%);
                 color: @text-color;
             }
         }
 
-        &.hiepvq-file-selected {
+        &.fof-file-selected {
             box-shadow: 0 0 0 3px fade(@primary-color, 60%);
         }
     }
 
-    .hiepvq-load-more-files {
+    .fof-load-more-files {
         text-align: center;
         padding: 40px 20px 20px;
     }

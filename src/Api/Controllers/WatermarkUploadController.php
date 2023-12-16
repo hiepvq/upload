@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Api\Controllers;
+namespace FoF\Upload\Api\Controllers;
 
 use Flarum\Api\Controller\ShowForumController;
 use Flarum\Foundation\Paths;
@@ -38,9 +38,9 @@ class WatermarkUploadController extends ShowForumController
     {
         $request->getAttribute('actor')->assertAdmin();
 
-        $file = Arr::get($request->getUploadedFiles(), 'hiepvq/watermark');
+        $file = Arr::get($request->getUploadedFiles(), 'fof/watermark');
 
-        $tmpFile = tempnam($this->paths->storage.'/tmp', 'hiepvq-watermark');
+        $tmpFile = tempnam($this->paths->storage.'/tmp', 'fof-watermark');
 
         $file->moveTo($tmpFile);
 
@@ -49,15 +49,15 @@ class WatermarkUploadController extends ShowForumController
             'target' => new Filesystem(new Local($this->paths->storage)),
         ]);
 
-        if (($path = $this->settings->get('hiepvq-upload.watermark')) && $mount->has($file = "target://$path")) {
+        if (($path = $this->settings->get('fof-upload.watermark')) && $mount->has($file = "target://$path")) {
             $mount->delete($file);
         }
 
-        $uploadName = 'hiepvq-upload-watermark-'.Str::lower(Str::random(8));
+        $uploadName = 'fof-upload-watermark-'.Str::lower(Str::random(8));
 
         $mount->move('source://'.pathinfo($tmpFile, PATHINFO_BASENAME), "target://$uploadName");
 
-        $this->settings->set('hiepvq-upload.watermark', $uploadName);
+        $this->settings->set('fof-upload.watermark', $uploadName);
 
         return parent::data($request, $document);
     }

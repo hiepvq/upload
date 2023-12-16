@@ -6,20 +6,20 @@ import Post from 'flarum/forum/components/Post';
 
 export default function () {
   extend(Post.prototype, 'oncreate', function () {
-    this.$('[data-hiepvq-upload-download-uuid]')
+    this.$('[data-fof-upload-download-uuid]')
       .unbind('click')
       .on('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        if (!app.forum.attribute('hiepvq-upload.canDownload')) {
-          alert(app.translator.trans('hiepvq-upload.forum.states.unauthorized'));
+        if (!app.forum.attribute('fof-upload.canDownload')) {
+          alert(app.translator.trans('fof-upload.forum.states.unauthorized'));
           return;
         }
 
-        let url = app.forum.attribute('apiUrl') + '/hiepvq/download';
+        let url = app.forum.attribute('apiUrl') + '/fof/download';
 
-        url += '/' + encodeURIComponent(e.currentTarget.dataset.hiepvqUploadDownloadUuid);
+        url += '/' + encodeURIComponent(e.currentTarget.dataset.fofUploadDownloadUuid);
         url += '/' + encodeURIComponent(this.attrs.post.id());
         url += '/' + encodeURIComponent(app.session.csrfToken);
 

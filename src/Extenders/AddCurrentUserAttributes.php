@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Extenders;
+namespace FoF\Upload\Extenders;
 
 use Flarum\Api\Serializer\CurrentUserSerializer;
 use Flarum\User\User;
@@ -21,12 +21,12 @@ class AddCurrentUserAttributes
     {
         $actor = $serializer->getActor();
 
-        if ($viewOthers = $actor->hasPermission('hiepvq-upload.viewUserUploads')) {
-            $attributes['hiepvq-upload-viewOthersMediaLibrary'] = $viewOthers;
+        if ($viewOthers = $actor->hasPermission('fof-upload.viewUserUploads')) {
+            $attributes['fof-upload-viewOthersMediaLibrary'] = $viewOthers;
         }
 
-        if ($deleteOthers = $actor->hasPermission('hiepvq-upload.deleteUserUploads')) {
-            $attributes['hiepvq-upload-deleteOthersMediaLibrary'] = $deleteOthers;
+        if ($deleteOthers = $actor->hasPermission('fof-upload.deleteUserUploads')) {
+            $attributes['fof-upload-deleteOthersMediaLibrary'] = $deleteOthers;
         }
 
         return $attributes;
