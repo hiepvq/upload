@@ -102,7 +102,7 @@
         "psr-4": {
             "Hiepvq\\Upload\\Tests\\": "tests/"
         }
-    }
+    },
     "minimum-stability": "dev",
     "prefer-stable": false
 }
