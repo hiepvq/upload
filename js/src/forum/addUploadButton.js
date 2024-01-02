@@ -12,14 +12,14 @@ export default function () {
     this.uploader = new Uploader();
   });
   extend(TextEditor.prototype, 'controlItems', function (items) {
-    if (!app.forum.attribute('hiepvq-upload.canUpload')) return;
+    if (!app.forum.attribute('fof-upload.canUpload')) return;
 
-    const composerButtonVisiblity = app.forum.attribute('hiepvq-upload.composerButtonVisiblity');
+    const composerButtonVisiblity = app.forum.attribute('fof-upload.composerButtonVisiblity');
 
     // Add media button
     if (composerButtonVisiblity === 'both' || composerButtonVisiblity === 'media-btn') {
       items.add(
-        'hiepvq-upload-media',
+        'fof-upload-media',
         FileManagerButton.component({
           uploader: this.uploader,
         })
@@ -29,7 +29,7 @@ export default function () {
     // Add upload button
     if (composerButtonVisiblity === 'both' || composerButtonVisiblity === 'upload-btn') {
       items.add(
-        'hiepvq-upload',
+        'fof-upload',
         UploadButton.component({
           uploader: this.uploader,
         })
@@ -38,7 +38,7 @@ export default function () {
   });
 
   extend(TextEditor.prototype, 'oncreate', function (f_, vnode) {
-    if (!app.forum.attribute('hiepvq-upload.canUpload')) return;
+    if (!app.forum.attribute('fof-upload.canUpload')) return;
 
     this.uploader.on('success', ({ file, addBBcode }) => {
       if (!addBBcode) return;
@@ -64,7 +64,7 @@ export default function () {
 
     // Gracefully fail if the TextEditor was used in a non-Composer context
     // Using a custom method to retrieve the target allows other extensions to still use this feature by returning an alternate container
-    const dragAndDropTarget = this.hiepvqUploadDragAndDropTarget();
+    const dragAndDropTarget = this.fofUploadDragAndDropTarget();
 
     if (dragAndDropTarget) {
       this.dragAndDrop = new DragAndDrop((files) => this.uploader.upload(files), dragAndDropTarget);
@@ -74,14 +74,14 @@ export default function () {
   });
 
   extend(TextEditor.prototype, 'onremove', function (f_, vnode) {
-    if (!app.forum.attribute('hiepvq-upload.canUpload')) return;
+    if (!app.forum.attribute('fof-upload.canUpload')) return;
 
     if (this.dragAndDrop) {
       this.dragAndDrop.unload();
     }
   });
 
-  TextEditor.prototype.hiepvqUploadDragAndDropTarget = function () {
+  TextEditor.prototype.fofUploadDragAndDropTarget = function () {
     return this.$().parents('.Composer')[0];
   };
 }

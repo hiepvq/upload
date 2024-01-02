@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,13 +10,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Processors;
+namespace FoF\Upload\Processors;
 
 use Flarum\Foundation\ValidationException;
 use Flarum\Settings\SettingsRepositoryInterface;
-use Hiepvq\Upload\Contracts\Processable;
-use Hiepvq\Upload\File;
-use Hiepvq\Upload\Helpers\Util;
+use FoF\Upload\Contracts\Processable;
+use FoF\Upload\File;
+use FoF\Upload\Helpers\Util;
 use Illuminate\Contracts\Filesystem\Cloud;
 use Illuminate\Contracts\Filesystem\Factory;
 use Intervention\Image\Exception\NotReadableException;
@@ -47,11 +47,11 @@ class ImageProcessor implements Processable
                 throw new ValidationException(['upload' => 'Corrupted image']);
             }
 
-            if ($this->settings->get('hiepvq-upload.mustResize')) {
+            if ($this->settings->get('fof-upload.mustResize')) {
                 $this->resize($image);
             }
 
-            if ($this->settings->get('hiepvq-upload.addsWatermarks')) {
+            if ($this->settings->get('fof-upload.addsWatermarks')) {
                 $this->watermark($image);
             }
 
@@ -69,7 +69,7 @@ class ImageProcessor implements Processable
      */
     protected function resize(Image $manager)
     {
-        $maxSize = $this->settings->get('hiepvq-upload.resizeMaxWidth', Util::DEFAULT_MAX_IMAGE_WIDTH);
+        $maxSize = $this->settings->get('fof-upload.resizeMaxWidth', Util::DEFAULT_MAX_IMAGE_WIDTH);
         $manager->resize(
             $maxSize,
             $maxSize,
@@ -85,10 +85,10 @@ class ImageProcessor implements Processable
      */
     protected function watermark(Image $image)
     {
-        if ($this->settings->get('hiepvq-watermark_path')) {
+        if ($this->settings->get('fof-watermark_path')) {
             $image->insert(
-                $this->assetsDir->get($this->settings->get('hiepvq-watermark_path')),
-                $this->settings->get('hiepvq-upload.watermarkPosition', 'bottom-right')
+                $this->assetsDir->get($this->settings->get('fof-watermark_path')),
+                $this->settings->get('fof-upload.watermarkPosition', 'bottom-right')
             );
         }
     }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Tests\integration\api;
+namespace FoF\Upload\Tests\integration\api;
 
 use Flarum\Testing\integration\TestCase;
 
@@ -20,7 +20,7 @@ class ForumAttributesTest extends TestCase
     {
         parent::setUp();
 
-        $this->extension('hiepvq-upload');
+        $this->extension('fof-upload');
     }
 
     /**
@@ -39,9 +39,9 @@ class ForumAttributesTest extends TestCase
 
         $json = json_decode($response->getBody()->getContents(), true);
 
-        $this->assertArrayHasKey('hiepvq-upload.canUpload', $json['data']['attributes']);
-        $this->assertArrayHasKey('hiepvq-upload.canDownload', $json['data']['attributes']);
-        $this->assertArrayHasKey('hiepvq-upload.composerButtonVisiblity', $json['data']['attributes']);
+        $this->assertArrayHasKey('fof-upload.canUpload', $json['data']['attributes']);
+        $this->assertArrayHasKey('fof-upload.canDownload', $json['data']['attributes']);
+        $this->assertArrayHasKey('fof-upload.composerButtonVisiblity', $json['data']['attributes']);
     }
 
     /**

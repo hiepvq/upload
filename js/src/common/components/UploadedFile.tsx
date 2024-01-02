@@ -92,7 +92,7 @@ export default class UploadedFile extends Component<CustomAttrs> {
       const uuid = this.file.uuid();
       await app.request({
         method: 'DELETE',
-        url: app.forum.attribute('apiUrl') + '/hiepvq/upload/delete/' + uuid,
+        url: app.forum.attribute('apiUrl') + '/fof/upload/delete/' + uuid,
       });
 
       if (this.attrs.onDelete) {

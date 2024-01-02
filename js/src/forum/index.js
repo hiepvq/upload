@@ -8,15 +8,15 @@ import addUserPageButton from './addUserPageButton';
 export { default as extend } from './extend';
 export * from './components';
 
-app.initializers.add('hiepvq-upload', () => {
+app.initializers.add('fof-upload', () => {
   // Leaving these here for now.
   // @see ./extend.ts
-  User.prototype.viewOthersMediaLibrary = Model.attribute('hiepvq-upload-viewOthersMediaLibrary');
-  User.prototype.deleteOthersMediaLibrary = Model.attribute('hiepvq-upload-deleteOthersMediaLibrary');
-  User.prototype.uploadCountCurrent = Model.attribute('hiepvq-upload-uploadCountCurrent');
-  User.prototype.uploadCountAll = Model.attribute('hiepvq-upload-uploadCountAll');
-  User.prototype.uploadSharedFiles = Model.attribute('hiepvq-upload-uploadSharedFiles');
-  User.prototype.accessSharedFiles = Model.attribute('hiepvq-upload-accessSharedFiles');
+  User.prototype.viewOthersMediaLibrary = Model.attribute('fof-upload-viewOthersMediaLibrary');
+  User.prototype.deleteOthersMediaLibrary = Model.attribute('fof-upload-deleteOthersMediaLibrary');
+  User.prototype.uploadCountCurrent = Model.attribute('fof-upload-uploadCountCurrent');
+  User.prototype.uploadCountAll = Model.attribute('fof-upload-uploadCountAll');
+  User.prototype.uploadSharedFiles = Model.attribute('fof-upload-uploadSharedFiles');
+  User.prototype.accessSharedFiles = Model.attribute('fof-upload-accessSharedFiles');
 
   //app.fileListState = new FileListState();
 

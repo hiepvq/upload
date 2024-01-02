@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,14 +10,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Commands;
+namespace FoF\Upload\Commands;
 
 use Flarum\Foundation\ValidationException;
 use Flarum\Settings\SettingsRepositoryInterface;
-use Hiepvq\Upload\Adapters\Manager;
-use Hiepvq\Upload\File;
-use Hiepvq\Upload\Helpers\Util;
-use Hiepvq\Upload\Repositories\FileRepository;
+use FoF\Upload\Adapters\Manager;
+use FoF\Upload\File;
+use FoF\Upload\Helpers\Util;
+use FoF\Upload\Repositories\FileRepository;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Filesystem\Cloud;
 use Illuminate\Contracts\Filesystem\Factory;
@@ -45,7 +45,7 @@ class DeleteFileHandler
         $privateShared = $this->util->isPrivateShared($command->file);
 
         if ($privateShared || $command->file->shared) {
-            $command->actor->assertCan('hiepvq-upload.upload-shared-files');
+            $command->actor->assertCan('fof-upload.upload-shared-files');
         } else {
             // We don't currently have a permission for this, so we'll just use admin.
             $command->actor->assertAdmin();

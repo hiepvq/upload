@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,10 +10,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Commands;
+namespace FoF\Upload\Commands;
 
 use Flarum\User\User;
-use Hiepvq\Upload\File;
+use FoF\Upload\File;
 
 class DeleteFile
 {

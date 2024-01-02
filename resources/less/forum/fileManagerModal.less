@@ -1,5 +1,5 @@
-.hiepvq-file-manager-modal {
-    .hiepvq-modal-buttons {
+.fof-file-manager-modal {
+    .fof-modal-buttons {
         @media screen and (min-width: 768px) {
             position: absolute;
             right: 10px;
@@ -14,7 +14,7 @@
 
         // Show full content on desktop
         @media screen and (min-width: 767px) {
-            .Button.hiepvq-upload-button {
+            .Button.fof-upload-button {
                 width: auto;
                 padding: 8px 13px;
 
@@ -34,7 +34,7 @@
 
         // Hide attach button label
         @media screen and (max-width: 767px) {
-            .hiepvq-upload-button:not(.uploading) {
+            .fof-upload-button:not(.uploading) {
                 .Button-icon {
                     margin: 0;
                 }
@@ -46,7 +46,7 @@
         }
     }
 
-    .hiepvq-drag-and-drop {
+    .fof-drag-and-drop {
         position: absolute;
         top: 0;
         left: 0;
@@ -58,7 +58,7 @@
         pointer-events: none;
         opacity: 0;
 
-        .hiepvq-drag-and-drop-release {
+        .fof-drag-and-drop-release {
             position: absolute;
             top: 50%;
             text-align: center;
@@ -75,9 +75,9 @@
         }
     }
 
-    .Modal-content.hiepvq-upload-dragging,
-    .Modal-content.hiepvq-upload-dropping {
-        .hiepvq-drag-and-drop {
+    .Modal-content.fof-upload-dragging,
+    .Modal-content.fof-upload-dropping {
+        .fof-drag-and-drop {
             opacity: 1;
         }
     }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,12 +10,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Data;
+namespace FoF\Upload\Data;
 
 use Blomstra\Gdpr\Data\Type;
-use Hiepvq\Upload\Adapters\Manager;
-use Hiepvq\Upload\Downloader\DefaultDownloader;
-use Hiepvq\Upload\File;
+use FoF\Upload\Adapters\Manager;
+use FoF\Upload\Downloader\DefaultDownloader;
+use FoF\Upload\File;
 use Psr\Log\LoggerInterface;
 
 class Uploads extends Type
@@ -63,7 +63,7 @@ class Uploads extends Type
                 if ($adaptor->delete($file)) {
                     $file->delete();
                 } else {
-                    $logger->error("[GDPR][Hiepvq Upload] Could not delete file {$file->id} from disk.");
+                    $logger->error("[GDPR][FoF Upload] Could not delete file {$file->id} from disk.");
                 }
             });
     }
