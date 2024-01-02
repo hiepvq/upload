@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Api\Controllers;
+namespace HiepVq\Upload\Api\Controllers;
 
 use Flarum\Api\Controller\AbstractDeleteController;
 use Flarum\Http\RequestUtil;
@@ -21,7 +21,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class WatermarkDeleteController extends AbstractDeleteController
 {
-    const SETTINGS_KEY = 'fof-watermark_path';
+    const SETTINGS_KEY = 'hiepvq-watermark_path';
 
     /**
      * @var Cloud

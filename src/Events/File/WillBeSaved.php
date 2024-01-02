@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Events\File;
+namespace HiepVq\Upload\Events\File;
 
 class WillBeSaved extends Event
 {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Extenders;
+namespace HiepVq\Upload\Extenders;
 
 use Flarum\Api\Serializer\UserSerializer;
 use Flarum\User\User;
@@ -19,8 +19,8 @@ class AddUserAttributes
 {
     public function __invoke(UserSerializer $serializer, User $user, array $attributes): array
     {
-        $attributes['fof-upload-uploadCountCurrent'] = $user->foffiles_current_count;
-        $attributes['fof-upload-uploadCountAll'] = $user->foffiles_count;
+        $attributes['hiepvq-upload-uploadCountCurrent'] = $user->hiepvqfiles_current_count;
+        $attributes['hiepvq-upload-uploadCountAll'] = $user->hiepvqfiles_count;
 
         return $attributes;
     }

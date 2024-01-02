@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,15 +10,15 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Commands;
+namespace HiepVq\Upload\Commands;
 
 use Flarum\Foundation\Application;
 use Flarum\Foundation\ValidationException;
 use Flarum\Http\UrlGenerator;
-use FoF\Upload\Events;
-use FoF\Upload\File;
-use FoF\Upload\Helpers\Util;
-use FoF\Upload\Repositories\FileRepository;
+use HiepVq\Upload\Events;
+use HiepVq\Upload\File;
+use HiepVq\Upload\Helpers\Util;
+use HiepVq\Upload\Repositories\FileRepository;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Filesystem\Cloud;
 use Illuminate\Contracts\Filesystem\Factory;
@@ -57,9 +57,9 @@ class UploadHandler
     public function handle(Upload $command): Collection
     {
         if ($command->shared) {
-            $command->actor->assertCan('fof-upload.upload-shared-files');
+            $command->actor->assertCan('hiepvq-upload.upload-shared-files');
         } else {
-            $command->actor->assertCan('fof-upload.upload');
+            $command->actor->assertCan('hiepvq-upload.upload');
         }
 
         $savedFiles = $command->files->map(function (UploadedFileInterface $file) use ($command) {
@@ -82,11 +82,11 @@ class UploadHandler
 
                 if (!$privateShared) {
                     if (!$adapter) {
-                        throw new ValidationException(['upload' => $this->translator->trans('fof-upload.api.upload_errors.forbidden_type')]);
+                        throw new ValidationException(['upload' => $this->translator->trans('hiepvq-upload.api.upload_errors.forbidden_type')]);
                     }
 
                     if (!$adapter->forMime($mime)) {
-                        throw new ValidationException(['upload' => $this->translator->trans('fof-upload.api.upload_errors.unsupported_type', ['mime' => $mime])]);
+                        throw new ValidationException(['upload' => $this->translator->trans('hiepvq-upload.api.upload_errors.unsupported_type', ['mime' => $mime])]);
                     }
                 }
 
@@ -112,7 +112,7 @@ class UploadHandler
 
                     if ($success) {
                         $file->upload_method = 'private-shared';
-                        $file->url = $this->url->to('api')->route('fof-upload.download.uuid', [
+                        $file->url = $this->url->to('api')->route('hiepvq-upload.download.uuid', [
                             'uuid' => $file->uuid,
                         ]);
 

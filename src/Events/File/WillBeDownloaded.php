@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,10 +10,10 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Events\File;
+namespace HiepVq\Upload\Events\File;
 
-use FoF\Upload\Download;
-use FoF\Upload\File;
+use HiepVq\Upload\Download;
+use HiepVq\Upload\File;
 
 class WillBeDownloaded
 {

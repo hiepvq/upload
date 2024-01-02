@@ -11,67 +11,67 @@ export default class InspectMimeModal extends Modal {
   }
 
   className() {
-    return 'Modal--small fof-upload-inspect-mime-modal';
+    return 'Modal--small hiepvq-upload-inspect-mime-modal';
   }
 
   title() {
-    return app.translator.trans('fof-upload.admin.inspect-mime.title');
+    return app.translator.trans('hiepvq-upload.admin.inspect-mime.title');
   }
 
   content() {
     return (
       <div className="Modal-body">
         <p>
-          {app.translator.trans('fof-upload.admin.inspect-mime.description', {
+          {app.translator.trans('hiepvq-upload.admin.inspect-mime.description', {
             a: <a href="https://github.com/SoftCreatR/php-mime-detector"></a>,
           })}
         </p>
-        <p>{app.translator.trans('fof-upload.admin.inspect-mime.select')}</p>
+        <p>{app.translator.trans('hiepvq-upload.admin.inspect-mime.select')}</p>
         <div>
           <input type="file" onchange={this.onupload.bind(this)} disabled={this.uploading} />
           {this.uploading ? LoadingIndicator.component() : null}
         </div>
         <dl>
-          <dt>{app.translator.trans('fof-upload.admin.inspect-mime.laravel-validation')}</dt>
+          <dt>{app.translator.trans('hiepvq-upload.admin.inspect-mime.laravel-validation')}</dt>
           <dd>
             {typeof this.inspection.laravel_validation === 'undefined' ? (
-              <em>{app.translator.trans('fof-upload.admin.inspect-mime.no-file-selected')}</em>
+              <em>{app.translator.trans('hiepvq-upload.admin.inspect-mime.no-file-selected')}</em>
             ) : this.inspection.laravel_validation ? (
-              app.translator.trans('fof-upload.admin.inspect-mime.validation-passed')
+              app.translator.trans('hiepvq-upload.admin.inspect-mime.validation-passed')
             ) : (
-              app.translator.trans('fof-upload.admin.inspect-mime.validation-failed', {
+              app.translator.trans('hiepvq-upload.admin.inspect-mime.validation-failed', {
                 error: this.inspection.laravel_validation_error || '?',
               })
             )}
           </dd>
         </dl>
         <dl>
-          <dt>{app.translator.trans('fof-upload.admin.inspect-mime.mime-detector')}</dt>
+          <dt>{app.translator.trans('hiepvq-upload.admin.inspect-mime.mime-detector')}</dt>
           <dd>
             {this.inspection.mime_detector ? (
               <code>{this.inspection.mime_detector}</code>
             ) : (
-              <em>{app.translator.trans('fof-upload.admin.inspect-mime.not-available')}</em>
+              <em>{app.translator.trans('hiepvq-upload.admin.inspect-mime.not-available')}</em>
             )}
           </dd>
         </dl>
         <dl>
-          <dt>{app.translator.trans('fof-upload.admin.inspect-mime.mime-fileinfo')}</dt>
+          <dt>{app.translator.trans('hiepvq-upload.admin.inspect-mime.mime-fileinfo')}</dt>
           <dd>
             {this.inspection.php_mime ? (
               <code>{this.inspection.php_mime}</code>
             ) : (
-              <em>{app.translator.trans('fof-upload.admin.inspect-mime.not-available')}</em>
+              <em>{app.translator.trans('hiepvq-upload.admin.inspect-mime.not-available')}</em>
             )}
           </dd>
         </dl>
         <dl>
-          <dt>{app.translator.trans('fof-upload.admin.inspect-mime.guessed-extension')}</dt>
+          <dt>{app.translator.trans('hiepvq-upload.admin.inspect-mime.guessed-extension')}</dt>
           <dd>
             {this.inspection.guessed_extension ? (
               <code>{this.inspection.guessed_extension}</code>
             ) : (
-              <em>{app.translator.trans('fof-upload.admin.inspect-mime.not-available')}</em>
+              <em>{app.translator.trans('hiepvq-upload.admin.inspect-mime.not-available')}</em>
             )}
           </dd>
         </dl>
@@ -91,7 +91,7 @@ export default class InspectMimeModal extends Modal {
     return app
       .request({
         method: 'POST',
-        url: app.forum.attribute('apiUrl') + '/fof/upload/inspect-mime',
+        url: app.forum.attribute('apiUrl') + '/hiepvq/upload/inspect-mime',
         serialize: (raw) => raw,
         body,
       })

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,9 +10,9 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Contracts;
+namespace HiepVq\Upload\Contracts;
 
-use FoF\Upload\File;
+use HiepVq\Upload\File;
 
 /**
  * The base interface for a file template.

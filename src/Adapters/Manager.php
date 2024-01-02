@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,17 +10,17 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Adapters;
+namespace HiepVq\Upload\Adapters;
 
 use Aws\S3\S3Client;
 use Flarum\Foundation\Paths;
 use Flarum\Foundation\ValidationException;
 use Flarum\Settings\SettingsRepositoryInterface;
-use FoF\Upload\Adapters;
-use FoF\Upload\Contracts\UploadAdapter;
-use FoF\Upload\Events\Adapter\Collecting;
-use FoF\Upload\Events\Adapter\Instantiate;
-use FoF\Upload\Helpers\Util;
+use HiepVq\Upload\Adapters;
+use HiepVq\Upload\Contracts\UploadAdapter;
+use HiepVq\Upload\Events\Adapter\Collecting;
+use HiepVq\Upload\Events\Adapter\Instantiate;
+use HiepVq\Upload\Helpers\Util;
 use GuzzleHttp\Client as Guzzle;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Collection;
@@ -86,25 +86,25 @@ class Manager
     protected function awsS3(Util $util)
     {
         $s3Config = [
-            'region'                  => empty($this->settings->get('fof-upload.awsS3Region')) ? null : $this->settings->get('fof-upload.awsS3Region'),
+            'region'                  => empty($this->settings->get('hiepvq-upload.awsS3Region')) ? null : $this->settings->get('hiepvq-upload.awsS3Region'),
             'version'                 => 'latest',
-            'endpoint'                => empty($this->settings->get('fof-upload.awsS3Endpoint')) ? null : $this->settings->get('fof-upload.awsS3Endpoint'),
-            'use_path_style_endpoint' => empty($this->settings->get('fof-upload.awsS3UsePathStyleEndpoint')) ? null : (bool) $this->settings->get('fof-upload.awsS3UsePathStyleEndpoint'),
+            'endpoint'                => empty($this->settings->get('hiepvq-upload.awsS3Endpoint')) ? null : $this->settings->get('hiepvq-upload.awsS3Endpoint'),
+            'use_path_style_endpoint' => empty($this->settings->get('hiepvq-upload.awsS3UsePathStyleEndpoint')) ? null : (bool) $this->settings->get('hiepvq-upload.awsS3UsePathStyleEndpoint'),
         ];
 
         // Only explicitly provide credentials if available.
         // Otherwise S3Client will attempt to use instance profile.
-        if ($this->settings->get('fof-upload.awsS3Key') && $this->settings->get('fof-upload.awsS3Secret')) {
+        if ($this->settings->get('hiepvq-upload.awsS3Key') && $this->settings->get('hiepvq-upload.awsS3Secret')) {
             $s3Config['credentials'] = [
-                'key'    => $this->settings->get('fof-upload.awsS3Key'),
-                'secret' => $this->settings->get('fof-upload.awsS3Secret'),
+                'key'    => $this->settings->get('hiepvq-upload.awsS3Key'),
+                'secret' => $this->settings->get('hiepvq-upload.awsS3Secret'),
             ];
         }
 
         return new Adapters\AwsS3(
             new AwsS3Adapter(
                 new S3Client($s3Config),
-                $this->settings->get('fof-upload.awsS3Bucket')
+                $this->settings->get('hiepvq-upload.awsS3Bucket')
             ),
         );
     }
@@ -116,7 +116,7 @@ class Manager
      */
     protected function imgur(Util $util)
     {
-        if (!$this->settings->get('fof-upload.imgurClientId')) {
+        if (!$this->settings->get('hiepvq-upload.imgurClientId')) {
             return null;
         }
 
@@ -124,7 +124,7 @@ class Manager
             new Guzzle([
                 'base_uri' => 'https://api.imgur.com/3/',
                 'headers'  => [
-                    'Authorization' => 'Client-ID '.$this->settings->get('fof-upload.imgurClientId'),
+                    'Authorization' => 'Client-ID '.$this->settings->get('hiepvq-upload.imgurClientId'),
                 ],
             ])
         );
@@ -149,15 +149,15 @@ class Manager
      */
     protected function qiniu(Util $util)
     {
-        if (!$this->settings->get('fof-upload.qiniuKey')) {
+        if (!$this->settings->get('hiepvq-upload.qiniuKey')) {
             return null;
         }
 
         $client = new QiniuAdapter(
-            $this->settings->get('fof-upload.qiniuKey'),
-            $this->settings->get('fof-upload.qiniuSecret'),
-            $this->settings->get('fof-upload.qiniuBucket'),
-            $this->settings->get('fof-upload.cdnUrl')
+            $this->settings->get('hiepvq-upload.qiniuKey'),
+            $this->settings->get('hiepvq-upload.qiniuSecret'),
+            $this->settings->get('hiepvq-upload.qiniuBucket'),
+            $this->settings->get('hiepvq-upload.cdnUrl')
         );
 
         return new Adapters\Qiniu($client);

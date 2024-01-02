@@ -21,15 +21,15 @@ export default class UploadButton extends Component {
 
   view() {
     const buttonText = this.attrs.uploader.uploading
-      ? app.translator.trans('fof-upload.forum.states.loading')
-      : app.translator.trans('fof-upload.forum.buttons.upload');
+      ? app.translator.trans('hiepvq-upload.forum.states.loading')
+      : app.translator.trans('hiepvq-upload.forum.buttons.upload');
 
     return (
       <Button
         className={classList([
           'Button',
           'hasIcon',
-          'fof-upload-button',
+          'hiepvq-upload-button',
           !this.isMediaUploadButton && !this.attrs.uploader.uploading && 'Button--icon',
           !this.isMediaUploadButton && !this.attrs.uploader.uploading && 'Button--link',
           this.attrs.uploader.uploading && 'uploading',

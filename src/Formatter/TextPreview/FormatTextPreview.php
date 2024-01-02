@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,10 +10,10 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Formatter\TextPreview;
+namespace HiepVq\Upload\Formatter\TextPreview;
 
 use Flarum\Foundation\Paths;
-use FoF\Upload\Repositories\FileRepository;
+use HiepVq\Upload\Repositories\FileRepository;
 use s9e\TextFormatter\Renderer;
 use s9e\TextFormatter\Utils;
 

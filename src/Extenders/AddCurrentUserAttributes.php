@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Extenders;
+namespace HiepVq\Upload\Extenders;
 
 use Flarum\Api\Serializer\CurrentUserSerializer;
 use Flarum\User\User;
@@ -21,20 +21,20 @@ class AddCurrentUserAttributes
     {
         $actor = $serializer->getActor();
 
-        if ($viewOthers = $actor->hasPermission('fof-upload.viewUserUploads')) {
-            $attributes['fof-upload-viewOthersMediaLibrary'] = $viewOthers;
+        if ($viewOthers = $actor->hasPermission('hiepvq-upload.viewUserUploads')) {
+            $attributes['hiepvq-upload-viewOthersMediaLibrary'] = $viewOthers;
         }
 
-        if ($deleteOthers = $actor->hasPermission('fof-upload.deleteUserUploads')) {
-            $attributes['fof-upload-deleteOthersMediaLibrary'] = $deleteOthers;
+        if ($deleteOthers = $actor->hasPermission('hiepvq-upload.deleteUserUploads')) {
+            $attributes['hiepvq-upload-deleteOthersMediaLibrary'] = $deleteOthers;
         }
 
-        if ($uploadShared = $actor->hasPermission('fof-upload.upload-shared-files')) {
-            $attributes['fof-upload-uploadSharedFiles'] = $uploadShared;
+        if ($uploadShared = $actor->hasPermission('hiepvq-upload.upload-shared-files')) {
+            $attributes['hiepvq-upload-uploadSharedFiles'] = $uploadShared;
         }
 
-        if ($accessShared = $actor->hasPermission('fof-upload.access-shared-files')) {
-            $attributes['fof-upload-accessSharedFiles'] = $accessShared;
+        if ($accessShared = $actor->hasPermission('hiepvq-upload.access-shared-files')) {
+            $attributes['hiepvq-upload-accessSharedFiles'] = $accessShared;
         }
 
         return $attributes;

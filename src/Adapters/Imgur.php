@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,10 +10,10 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Adapters;
+namespace HiepVq\Upload\Adapters;
 
-use FoF\Upload\Contracts\UploadAdapter;
-use FoF\Upload\File;
+use HiepVq\Upload\Contracts\UploadAdapter;
+use HiepVq\Upload\File;
 use GuzzleHttp\Client as Guzzle;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;

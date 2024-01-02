@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,12 +10,12 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Tests\integration\api;
+namespace HiepVq\Upload\Tests\integration\api;
 
 use Flarum\Extend;
 use Flarum\Testing\integration\RetrievesAuthorizedUsers;
 use Flarum\Testing\integration\TestCase;
-use FoF\Upload\File;
+use HiepVq\Upload\File;
 
 class HideFilesTest extends TestCase
 {
@@ -25,7 +25,7 @@ class HideFilesTest extends TestCase
     {
         parent::setUp();
 
-        $this->extension('fof-upload');
+        $this->extension('hiepvq-upload');
 
         $this->prepareDatabase([
             'users' => [
@@ -33,7 +33,7 @@ class HideFilesTest extends TestCase
                 ['id' => 3, 'username' => 'normal2', 'email' => 'normal2@machine.local'],
                 ['id' => 4, 'username' => 'moderator', 'email' => 'moderator@machine.local'],
             ],
-            'fof_upload_files' => [
+            'hiepvq_upload_files' => [
                 ['id' => 1, 'base_name' => 'test_file.abc', 'uuid' => 'abc-123', 'path' => 'path/test_file.abc', 'url' => 'http://localhost/test_file.abc', 'type' => 'test/file', 'size' => 123, 'upload_method' => 'local', 'actor_id' => 2, 'shared' => false],
                 ['id' => 2, 'base_name' => 'test_file2.abc', 'uuid' => 'def-456', 'path' => 'path/test_file2.abc', 'url' => 'http://localhost/test_file2.abc', 'type' => 'test/file', 'size' => 123, 'upload_method' => 'local', 'shared' => true],
             ],
@@ -41,8 +41,8 @@ class HideFilesTest extends TestCase
                 ['user_id' => 4, 'group_id' => 4],
             ],
             'group_permission' => [
-                ['group_id' => 4, 'permission' => 'fof-upload.deleteUserUploads'],
-                ['group_id' => 4, 'permission' => 'fof-upload.viewUserUploads'],
+                ['group_id' => 4, 'permission' => 'hiepvq-upload.deleteUserUploads'],
+                ['group_id' => 4, 'permission' => 'hiepvq-upload.viewUserUploads'],
             ],
         ]);
     }
@@ -54,7 +54,7 @@ class HideFilesTest extends TestCase
     {
         $this->extend(
             (new Extend\Csrf())
-                ->exemptRoute('fof-upload.hide')
+                ->exemptRoute('hiepvq-upload.hide')
         );
 
         $uuid = 'abc-123';
@@ -62,7 +62,7 @@ class HideFilesTest extends TestCase
         $response = $this->send(
             $this->request(
                 'PATCH',
-                '/api/fof/upload/hide',
+                '/api/hiepvq/upload/hide',
                 [
                     'json' => [
                         'uuid' => $uuid,
@@ -82,7 +82,7 @@ class HideFilesTest extends TestCase
         $response = $this->send(
             $this->request(
                 'PATCH',
-                '/api/fof/upload/hide',
+                '/api/hiepvq/upload/hide',
                 [
                     'authenticatedAs' => 2,
                     'json'            => [],
@@ -110,7 +110,7 @@ class HideFilesTest extends TestCase
         $response = $this->send(
             $this->request(
                 'PATCH',
-                '/api/fof/upload/hide',
+                '/api/hiepvq/upload/hide',
                 [
                     'authenticatedAs' => 2,
                     'json'            => [
@@ -142,7 +142,7 @@ class HideFilesTest extends TestCase
         $response = $this->send(
             $this->request(
                 'PATCH',
-                '/api/fof/upload/hide',
+                '/api/hiepvq/upload/hide',
                 [
                     'authenticatedAs' => 3,
                     'json'            => [
@@ -170,7 +170,7 @@ class HideFilesTest extends TestCase
         $response = $this->send(
             $this->request(
                 'PATCH',
-                '/api/fof/upload/hide',
+                '/api/hiepvq/upload/hide',
                 [
                     'authenticatedAs' => 2,
                     'json'            => [
@@ -193,7 +193,7 @@ class HideFilesTest extends TestCase
         $response = $this->send(
             $this->request(
                 'PATCH',
-                '/api/fof/upload/hide',
+                '/api/hiepvq/upload/hide',
                 [
                     'authenticatedAs' => 1,
                     'json'            => [
@@ -225,7 +225,7 @@ class HideFilesTest extends TestCase
         $response = $this->send(
             $this->request(
                 'PATCH',
-                '/api/fof/upload/hide',
+                '/api/hiepvq/upload/hide',
                 [
                     'authenticatedAs' => 4,
                     'json'            => [
@@ -249,7 +249,7 @@ class HideFilesTest extends TestCase
     //     $response = $this->send(
     //         $this->request(
     //             'PATCH',
-    //             '/api/fof/upload/hide',
+    //             '/api/hiepvq/upload/hide',
     //             [
     //                 'authenticatedAs' => 4,
     //                 'json' => [

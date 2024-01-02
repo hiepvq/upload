@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Templates;
+namespace HiepVq\Upload\Templates;
 
 use Illuminate\Contracts\View\View;
 
@@ -26,7 +26,7 @@ class FileTemplate extends AbstractTextFormatterTemplate
      */
     public function name(): string
     {
-        return $this->trans('fof-upload.admin.templates.file');
+        return $this->trans('hiepvq-upload.admin.templates.file');
     }
 
     /**
@@ -34,12 +34,12 @@ class FileTemplate extends AbstractTextFormatterTemplate
      */
     public function description(): string
     {
-        return $this->trans('fof-upload.admin.templates.file_description');
+        return $this->trans('hiepvq-upload.admin.templates.file_description');
     }
 
     public function template(): View
     {
-        return $this->getView('fof-upload.templates::file');
+        return $this->getView('hiepvq-upload.templates::file');
     }
 
     /**

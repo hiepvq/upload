@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,12 +10,12 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Extenders;
+namespace HiepVq\Upload\Extenders;
 
 use Flarum\Extend\Formatter;
 use Flarum\Extension\Extension;
-use FoF\Upload\Contracts\TextFormatterTemplate;
-use FoF\Upload\Helpers\Util;
+use HiepVq\Upload\Contracts\TextFormatterTemplate;
+use HiepVq\Upload\Helpers\Util;
 use Illuminate\Contracts\Container\Container;
 use InvalidArgumentException;
 use s9e\TextFormatter\Configurator;

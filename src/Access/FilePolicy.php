@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,11 +10,11 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Upload\Access;
+namespace HiepVq\Upload\Access;
 
 use Flarum\User\Access\AbstractPolicy;
 use Flarum\User\User;
-use FoF\Upload\File;
+use HiepVq\Upload\File;
 
 class FilePolicy extends AbstractPolicy
 {
@@ -26,14 +26,14 @@ class FilePolicy extends AbstractPolicy
 
     public function hide(User $actor, File $file)
     {
-        if (($file->actor?->id === $actor->id || $actor->hasPermission('fof-upload.deleteUserUploads')) && $file->actor !== null) {
+        if (($file->actor?->id === $actor->id || $actor->hasPermission('hiepvq-upload.deleteUserUploads')) && $file->actor !== null) {
             return $this->allow();
         }
     }
 
     public function delete(User $actor, File $file)
     {
-        if ($actor->can('fof-upload.deleteUserUploads') && $file->actor !== null) {
+        if ($actor->can('hiepvq-upload.deleteUserUploads') && $file->actor !== null) {
             return $this->allow();
         }
     }

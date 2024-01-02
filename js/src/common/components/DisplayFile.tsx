@@ -68,7 +68,7 @@ export default class DisplayFile extends Component<CustomAttrs> {
         {this.imageLoaded && isImage ? (
           <img
             src={this.file.url()}
-            className="fof-file-image-preview"
+            className="hiepvq-file-image-preview"
             draggable={false}
             onerror={this.handleImageError}
             onload={this.handleImageLoad}
@@ -78,16 +78,16 @@ export default class DisplayFile extends Component<CustomAttrs> {
           this.displayIcon(this.fileIcon)
         )}
 
-        <div className="fof-file-actions">{this.actionItems(this.file).toArray()}</div>
+        <div className="hiepvq-file-actions">{this.actionItems(this.file).toArray()}</div>
 
-        <div className="fof-file-name">
+        <div className="hiepvq-file-name">
           <Tooltip text={this.file.baseName()}>
             <span>{this.file.baseName()}</span>
           </Tooltip>
         </div>
 
         {this.isFileHiding && (
-          <div class="fof-file-loading" role="status" aria-label={app.translator.trans('fof-upload.lib.file_list.hide_file.loading')}>
+          <div class="hiepvq-file-loading" role="status" aria-label={app.translator.trans('hiepvq-upload.lib.file_list.hide_file.loading')}>
             <LoadingIndicator />
           </div>
         )}
@@ -98,7 +98,7 @@ export default class DisplayFile extends Component<CustomAttrs> {
   displayIcon(fileIcon: string): Mithril.Children {
     return (
       <span
-        className="fof-file-icon"
+        className="hiepvq-file-icon"
         role="presentation"
         style={{
           display: 'flex',
@@ -118,17 +118,17 @@ export default class DisplayFile extends Component<CustomAttrs> {
     file.canViewInfo() &&
       items.add(
         'view-info',
-        <Button className="Button Button--icon fof-file-action" icon="fas fa-info-circle" aria-label="info" onclick={() => this.viewFileInfo()} />,
+        <Button className="Button Button--icon hiepvq-file-action" icon="fas fa-info-circle" aria-label="info" onclick={() => this.viewFileInfo()} />,
         100
       );
 
-    const transPrefix = file.isShared() ? 'fof-upload.lib.file_list.hide_shared_file' : 'fof-upload.lib.file_list.hide_file';
+    const transPrefix = file.isShared() ? 'hiepvq-upload.lib.file_list.hide_shared_file' : 'hiepvq-upload.lib.file_list.hide_file';
 
     file.canHide() &&
       items.add(
         'hide-file',
         <Button
-          className="Button Button--icon fof-file-action"
+          className="Button Button--icon hiepvq-file-action"
           icon={this.file.hidden() ? 'fas fa-eye' : 'fas fa-eye-slash'}
           aria-label={app.translator.trans(this.file.hidden() ? `${transPrefix}.btn_a11y_label_show` : `${transPrefix}.btn_a11y_label_hide`, {
             fileName: file.baseName(),
@@ -143,9 +143,9 @@ export default class DisplayFile extends Component<CustomAttrs> {
       items.add(
         'delete-file',
         <Button
-          className="Button Button--icon fof-file-action"
+          className="Button Button--icon hiepvq-file-action"
           icon="fas fa-trash"
-          aria-label={app.translator.trans('fof-upload.lib.file_list.delete_file_a11y_label', { fileName: file.baseName() })}
+          aria-label={app.translator.trans('hiepvq-upload.lib.file_list.delete_file_a11y_label', { fileName: file.baseName() })}
           disabled={this.isFileHiding}
           onclick={(e: MouseEvent) => this.confirmDelete(e)}
         />,
@@ -186,11 +186,11 @@ export default class DisplayFile extends Component<CustomAttrs> {
   async confirmDelete(e: MouseEvent) {
     e.stopPropagation();
 
-    if (confirm(extractText(app.translator.trans('fof-upload.lib.file_list.delete_confirmation', { fileName: this.file.baseName() })))) {
+    if (confirm(extractText(app.translator.trans('hiepvq-upload.lib.file_list.delete_confirmation', { fileName: this.file.baseName() })))) {
       const uuid = this.file.uuid();
       await app.request({
         method: 'DELETE',
-        url: app.forum.attribute('apiUrl') + '/fof/upload/delete/' + uuid,
+        url: app.forum.attribute('apiUrl') + '/hiepvq/upload/delete/' + uuid,
       });
 
       if (this.attrs.onDelete) {
