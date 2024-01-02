@@ -102,5 +102,7 @@
         "psr-4": {
             "FoF\\Upload\\Tests\\": "tests/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": false
 }
