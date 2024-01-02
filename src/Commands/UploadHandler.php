@@ -64,11 +64,10 @@ class UploadHandler
 
         $savedFiles = $command->files->map(function (UploadedFileInterface $file) use ($command) {
             $privateShared = $command->shared && $command->hideFromMediaManager;
-
             $upload = $this->files->moveUploadedFileToTemp($file);
 
             try {
-
+                
                 $mime = $this->files->determineMime($upload);
 
                 $this->files->sanitizeSvg($upload, $mime);
