@@ -96,7 +96,7 @@
         "test": "Runs all tests.",
         "test:unit": "Runs all unit tests.",
         "test:integration": "Runs all integration tests.",
-        "test:setup": "11Sets up a database for use with integration tests. Execute this only once."
+        "test:setup": "Sets up a database for use with integration tests. Execute this only once."
     },
     "autoload-dev": {
         "psr-4": {
