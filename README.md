@@ -1,4 +1,4 @@
-`# Upload by FriendsOfFlarum
+# Upload by FriendsOfFlarum
 
 [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/FriendsOfFlarum/upload/blob/master/LICENSE.md) [![Latest Stable Version](https://img.shields.io/packagist/v/hiepvq/upload.svg)](https://packagist.org/packages/hiepvq/upload) [![Total Downloads](https://img.shields.io/packagist/dt/hiepvq/upload.svg)](https://packagist.org/packages/hiepvq/upload) [![OpenCollective](https://img.shields.io/badge/opencollective-hiepvq-blue.svg)](https://opencollective.com/hiepvq/donate)
 

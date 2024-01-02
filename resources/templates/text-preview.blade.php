@@ -2,33 +2,33 @@
 $translator = resolve('translator');
 @endphp
 
-<figure class="FofUpload-TextPreview" data-loading="false" data-expanded="false" data-hassnippet="{@has_snippet}">
-    <figcaption class="FofUpload-TextPreviewTitle">
+<figure class="HiepvqUpload-TextPreview" data-loading="false" data-expanded="false" data-hassnippet="{@has_snippet}">
+    <figcaption class="HiepvqUpload-TextPreviewTitle">
         <i aria-hidden="true" class="icon far fa-file"></i> {SIMPLETEXT1}
     </figcaption>
 
-    <div class="FofUpload-TextPreviewSnippet">
+    <div class="HiepvqUpload-TextPreviewSnippet">
       <pre><code data-preview-text="@php echo($translator->trans('hiepvq-upload.forum.text_preview.no_snippet_preview')) @endphp" data-nosnippet-text="@php echo($translator->trans('hiepvq-upload.forum.text_preview.no_snippet')) @endphp">{@snippet}</code></pre>
     </div>
-    <div class="FofUpload-TextPreviewFull"></div>
+    <div class="HiepvqUpload-TextPreviewFull"></div>
 
-    <button type="button" class="Button hasIcon FofUpload-TextPreviewToggle">
-        <i aria-hidden="true" class="icon fas fa-chevron-down Button-icon FofUpload-TextPreviewExpandIcon"></i>
-        <span class="Button-label FofUpload-TextPreviewExpand">
+    <button type="button" class="Button hasIcon HiepvqUpload-TextPreviewToggle">
+        <i aria-hidden="true" class="icon fas fa-chevron-down Button-icon HiepvqUpload-TextPreviewExpandIcon"></i>
+        <span class="Button-label HiepvqUpload-TextPreviewExpand">
             @php echo($translator->trans('hiepvq-upload.forum.text_preview.expand')); @endphp
         </span>
 
-        <i aria-hidden="true" class="icon fas fa-chevron-up Button-icon FofUpload-TextPreviewCollapseIcon"></i>
-        <span class="Button-label FofUpload-TextPreviewCollapse">
+        <i aria-hidden="true" class="icon fas fa-chevron-up Button-icon HiepvqUpload-TextPreviewCollapseIcon"></i>
+        <span class="Button-label HiepvqUpload-TextPreviewCollapse">
             @php echo($translator->trans('hiepvq-upload.forum.text_preview.collapse')); @endphp
         </span>
 
-        <div data-size="small" class="FofUpload-TextPreviewToggleLoading LoadingIndicator-container LoadingIndicator-container--inline LoadingIndicator-container--small">
+        <div data-size="small" class="HiepvqUpload-TextPreviewToggleLoading LoadingIndicator-container LoadingIndicator-container--inline LoadingIndicator-container--small">
           <div aria-hidden="true" class="LoadingIndicator"></div>
         </div>
     </button>
 
-    <div class="FofUpload-TextPreviewError">
+    <div class="HiepvqUpload-TextPreviewError">
         <p>
             <i aria-hidden="true" class="icon fas fa-exclamation-circle"></i>
             @php echo($translator->trans('hiepvq-upload.forum.text_preview.error')) @endphp
@@ -39,10 +39,10 @@ $translator = resolve('translator');
         {
             const figure = document.currentScript.parentElement;
 
-            const previewEl = figure.querySelector('.FofUpload-TextPreviewFull');
-            const snippetEl = figure.querySelector('.FofUpload-TextPreviewSnippet');
-            const loadingEl = figure.querySelector('.FofUpload-TextPreviewLoading');
-            const toggleBtn = figure.querySelector('.FofUpload-TextPreviewToggle');
+            const previewEl = figure.querySelector('.HiepvqUpload-TextPreviewFull');
+            const snippetEl = figure.querySelector('.HiepvqUpload-TextPreviewSnippet');
+            const loadingEl = figure.querySelector('.HiepvqUpload-TextPreviewLoading');
+            const toggleBtn = figure.querySelector('.HiepvqUpload-TextPreviewToggle');
 
             const snippetText = '';
 
