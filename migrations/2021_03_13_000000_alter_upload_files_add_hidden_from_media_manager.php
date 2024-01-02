@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of fof/upload.
+ * This file is part of hiepvq/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -15,14 +15,14 @@ use Illuminate\Database\Schema\Builder;
 
 return [
     'up' => function (Builder $schema) {
-        if (!$schema->hasColumn('fof_upload_files', 'hide_from_media_manager')) {
-            $schema->table('fof_upload_files', function (Blueprint $table) {
+        if (!$schema->hasColumn('hiepvq_upload_files', 'hide_from_media_manager')) {
+            $schema->table('hiepvq_upload_files', function (Blueprint $table) {
                 $table->boolean('hide_from_media_manager')->default(false);
             });
         }
     },
     'down' => function (Builder $schema) {
-        $schema->table('fof_upload_files', function (Blueprint $table) {
+        $schema->table('hiepvq_upload_files', function (Blueprint $table) {
             $table->dropColumn('hide_from_media_manager');
         });
     },

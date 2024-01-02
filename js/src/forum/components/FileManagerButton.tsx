@@ -11,9 +11,9 @@ interface FileManagerButtonAttrs extends ComponentAttrs {
 export default class FileManagerButton extends Component<FileManagerButtonAttrs> {
   view() {
     return (
-      <Tooltip text={app.translator.trans('fof-upload.forum.buttons.media')}>
+      <Tooltip text={app.translator.trans('hiepvq-upload.forum.buttons.media')}>
         {Button.component({
-          className: 'Button fof-upload-button Button--icon',
+          className: 'Button hiepvq-upload-button Button--icon',
           onclick: this.fileManagerButtonClicked.bind(this),
           icon: 'fas fa-photo-video',
         })}

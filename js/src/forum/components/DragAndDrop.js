@@ -61,7 +61,7 @@ export default class DragAndDrop {
     event.preventDefault();
 
     if (!this.over) {
-      this.composerElement.classList.add('fof-upload-dragging');
+      this.composerElement.classList.add('hiepvq-upload-dragging');
       this.over = true;
     }
   }
@@ -74,7 +74,7 @@ export default class DragAndDrop {
     event.preventDefault();
 
     if (this.over) {
-      this.composerElement.classList.remove('fof-upload-dragging');
+      this.composerElement.classList.remove('hiepvq-upload-dragging');
       this.over = false;
     }
   }
@@ -88,6 +88,6 @@ export default class DragAndDrop {
 
     this.upload(event.dataTransfer.files);
 
-    this.composerElement.classList.remove('fof-upload-dragging');
+    this.composerElement.classList.remove('hiepvq-upload-dragging');
   }
 }

@@ -46,7 +46,7 @@ export default class FileListState {
 
     this.loading = true;
 
-    let route: string = 'fof/uploads';
+    let route: string = 'hiepvq/uploads';
     let params: ApiQueryParamsPlural = {};
 
     if (!this.sharedFiles && this.user) {
@@ -55,7 +55,7 @@ export default class FileListState {
         page: { offset },
       } as ApiQueryParamsPlural;
     } else {
-      route = 'fof/upload/shared-files';
+      route = 'hiepvq/upload/shared-files';
       params = {
         page: { offset },
       } as ApiQueryParamsPlural;

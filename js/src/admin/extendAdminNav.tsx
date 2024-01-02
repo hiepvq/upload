@@ -9,8 +9,8 @@ export default function extendAdminNav() {
   extend(AdminNav.prototype, 'items', function (items: ItemList<Mithril.Children>) {
     items.add(
       'shared-uploads',
-      <LinkButton href={app.route('adminUploads')} icon="fas fa-file-upload" title={app.translator.trans('fof-upload.admin.shared-uploads.title')}>
-        {app.translator.trans('fof-upload.admin.nav.shared-uploads-button')}
+      <LinkButton href={app.route('adminUploads')} icon="fas fa-file-upload" title={app.translator.trans('hiepvq-upload.admin.shared-uploads.title')}>
+        {app.translator.trans('hiepvq-upload.admin.nav.shared-uploads-button')}
       </LinkButton>,
       49
     );
