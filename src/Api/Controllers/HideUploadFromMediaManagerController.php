@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,15 +10,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Api\Controllers;
+namespace FoF\Upload\Api\Controllers;
 
 use Flarum\Api\Controller\AbstractShowController;
 use Flarum\Database\AbstractModel;
 use Flarum\Foundation\ValidationException;
 use Flarum\Http\RequestUtil;
-use Hiepvq\Upload\Api\Serializers\FileSerializer;
-use Hiepvq\Upload\Api\Serializers\SharedFileSerializer;
-use Hiepvq\Upload\File;
+use FoF\Upload\Api\Serializers\FileSerializer;
+use FoF\Upload\Api\Serializers\SharedFileSerializer;
+use FoF\Upload\File;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;

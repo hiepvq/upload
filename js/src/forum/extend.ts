@@ -8,12 +8,12 @@ export default [
 
   // Not using the new extender yet, thinking about if to change the serialized names,
   // or the js property names, as we can't change the key->attribute name via the extender,
-  // like we used to do with ie `User.prototype.viewOthersMediaLibrary = Model.attribute('hiepvq-upload-viewOthersMediaLibrary');`
+  // like we used to do with ie `User.prototype.viewOthersMediaLibrary = Model.attribute('fof-upload-viewOthersMediaLibrary');`
   // new Extend.Model(User) //
-  //     .attribute<boolean>('hiepvq-upload-viewOthersMediaLibrary')
-  //     .attribute<boolean>('hiepvq-upload-deleteOthersMediaLibrary')
-  //     .attribute<number>('hiepvq-upload-uploadCountCurrent')
-  //     .attribute<number>('hiepvq-upload-uploadCountAll'),
+  //     .attribute<boolean>('fof-upload-viewOthersMediaLibrary')
+  //     .attribute<boolean>('fof-upload-deleteOthersMediaLibrary')
+  //     .attribute<number>('fof-upload-uploadCountCurrent')
+  //     .attribute<number>('fof-upload-uploadCountAll'),
 
   new Extend.Routes() //
     .add('user.uploads', '/u/:username/uploads', UploadsUserPage),

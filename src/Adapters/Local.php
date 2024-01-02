@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,13 +10,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Adapters;
+namespace FoF\Upload\Adapters;
 
 use Flarum\Foundation\Paths;
 use Flarum\Http\UrlGenerator;
 use Flarum\Settings\SettingsRepositoryInterface;
-use Hiepvq\Upload\Contracts\UploadAdapter;
-use Hiepvq\Upload\File;
+use FoF\Upload\Contracts\UploadAdapter;
+use FoF\Upload\File;
 use League\Flysystem\Adapter\Local as AdapterLocal;
 use League\Flysystem\AdapterInterface;
 
@@ -60,8 +60,8 @@ class Local extends Flysystem implements UploadAdapter
         /** @var SettingsRepositoryInterface $settings */
         $settings = resolve(SettingsRepositoryInterface::class);
 
-        if ($settings->get('hiepvq-upload.cdnUrl')) {
-            $file->url = $settings->get('hiepvq-upload.cdnUrl').$file->url;
+        if ($settings->get('fof-upload.cdnUrl')) {
+            $file->url = $settings->get('fof-upload.cdnUrl').$file->url;
         } else {
             $file->url = $generator->to('forum')->path(ltrim($file->url, '/'));
         }

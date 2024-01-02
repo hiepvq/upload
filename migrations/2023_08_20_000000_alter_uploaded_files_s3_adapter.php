@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -16,7 +16,7 @@ function setAwsUploadedFilesAdapterDelimiter(Builder $schema, string $old = '_',
 {
     $schema
         ->getConnection()
-        ->table('hiepvq_upload_files')
+        ->table('fof_upload_files')
         ->where('upload_method', "aws{$old}s3")
         ->update(['upload_method' => "aws{$new}s3"]);
 }

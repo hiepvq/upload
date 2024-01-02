@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -14,6 +14,6 @@ use Flarum\Database\Migration;
 use Flarum\Group\Group;
 
 return Migration::addPermissions([
-    'hiepvq-upload.viewUserUploads'   => Group::MODERATOR_ID,
-    'hiepvq-upload.deleteUserUploads' => Group::MODERATOR_ID,
+    'fof-upload.viewUserUploads'   => Group::MODERATOR_ID,
+    'fof-upload.deleteUserUploads' => Group::MODERATOR_ID,
 ]);

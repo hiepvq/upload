@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Sanitizer;
+namespace FoF\Upload\Sanitizer;
 
 use enshrined\svgSanitize\data\AllowedAttributes;
 
@@ -19,8 +19,8 @@ class SvgAllowedAttrs extends AllowedAttributes
     public static function getAttributes(): array
     {
         return array_diff(
-            array_merge(parent::getAttributes(), resolve('hiepvq.upload.sanitizer.svg_allowed_attrs')),
-            resolve('hiepvq.upload.sanitizer.svg_disallowed_attrs')
+            array_merge(parent::getAttributes(), resolve('fof.upload.sanitizer.svg_allowed_attrs')),
+            resolve('fof.upload.sanitizer.svg_disallowed_attrs')
         );
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload;
+namespace FoF\Upload;
 
 use Blomstra\Gdpr\Extend\UserData;
 use Flarum\Api\Controller\ListDiscussionsController;
@@ -25,12 +25,12 @@ use Flarum\Post\Event\Posted;
 use Flarum\Post\Event\Revised;
 use Flarum\Settings\Event\Deserializing;
 use Flarum\User\User;
-use Hiepvq\Upload\Events\File\WillBeUploaded;
-use Hiepvq\Upload\Exceptions\ExceptionHandler;
-use Hiepvq\Upload\Exceptions\InvalidUploadException;
-use Hiepvq\Upload\Extend\SvgSanitizer;
-use Hiepvq\Upload\Extenders\LoadFilesRelationship;
-use Hiepvq\Upload\Helpers\Util;
+use FoF\Upload\Events\File\WillBeUploaded;
+use FoF\Upload\Exceptions\ExceptionHandler;
+use FoF\Upload\Exceptions\InvalidUploadException;
+use FoF\Upload\Extend\SvgSanitizer;
+use FoF\Upload\Extenders\LoadFilesRelationship;
+use FoF\Upload\Helpers\Util;
 
 return [
     (new Extend\Frontend('admin'))
@@ -44,33 +44,33 @@ return [
     new Extend\Locales(__DIR__.'/resources/locale'),
 
     (new Extend\View())
-        ->namespace('hiepvq-upload.templates', __DIR__.'/resources/templates'),
+        ->namespace('fof-upload.templates', __DIR__.'/resources/templates'),
 
     (new Extend\Routes('api'))
-        ->get('/hiepvq/uploads', 'hiepvq-upload.list', Api\Controllers\ListUploadsController::class)
-        ->post('/hiepvq/upload', 'hiepvq-upload.upload', Api\Controllers\UploadController::class)
-        ->post('/hiepvq/watermark', 'hiepvq-upload.watermark', Api\Controllers\WatermarkUploadController::class)
-        ->delete('/hiepvq/watermark', 'hiepvq-upload.watermark.delete', Api\Controllers\WatermarkDeleteController::class)
-        ->get('/hiepvq/download/{uuid}/{post}/{csrf}', 'hiepvq-upload.download', Api\Controllers\DownloadController::class)
-        ->get('/hiepvq/download/{uuid}', 'hiepvq-upload.download.uuid', Api\Controllers\DownloadController::class)
-        ->post('/hiepvq/upload/inspect-mime', 'hiepvq-upload.inspect-mime', Api\Controllers\InspectMimeController::class)
-        ->patch('/hiepvq/upload/hide', 'hiepvq-upload.hide', Api\Controllers\HideUploadFromMediaManagerController::class)
-        ->get('/hiepvq/upload/shared-files', 'hiepvq-upload.shared-files.index', Api\Controllers\ListSharedUploadsController::class)
-        ->delete('/hiepvq/upload/delete/{uuid}', 'hiepvq-upload.delete', Api\Controllers\DeleteFileController::class),
+        ->get('/fof/uploads', 'fof-upload.list', Api\Controllers\ListUploadsController::class)
+        ->post('/fof/upload', 'fof-upload.upload', Api\Controllers\UploadController::class)
+        ->post('/fof/watermark', 'fof-upload.watermark', Api\Controllers\WatermarkUploadController::class)
+        ->delete('/fof/watermark', 'fof-upload.watermark.delete', Api\Controllers\WatermarkDeleteController::class)
+        ->get('/fof/download/{uuid}/{post}/{csrf}', 'fof-upload.download', Api\Controllers\DownloadController::class)
+        ->get('/fof/download/{uuid}', 'fof-upload.download.uuid', Api\Controllers\DownloadController::class)
+        ->post('/fof/upload/inspect-mime', 'fof-upload.inspect-mime', Api\Controllers\InspectMimeController::class)
+        ->patch('/fof/upload/hide', 'fof-upload.hide', Api\Controllers\HideUploadFromMediaManagerController::class)
+        ->get('/fof/upload/shared-files', 'fof-upload.shared-files.index', Api\Controllers\ListSharedUploadsController::class)
+        ->delete('/fof/upload/delete/{uuid}', 'fof-upload.delete', Api\Controllers\DeleteFileController::class),
 
     // Disabled pending https://github.com/FriendsOfFlarum/upload/issues/374
     // (new Extend\Console())
     //     ->command(Console\MapFilesCommand::class),
 
     (new Extend\Csrf())
-        ->exemptRoute('hiepvq-upload.download'),
+        ->exemptRoute('fof-upload.download'),
 
     (new Extend\Model(User::class))
-        ->cast('hiepvqfiles_current_count', 'int')
-        ->cast('hiepvqfiles_count', 'int')
-        ->hasMany('hiepvqfiles', File::class, 'actor_id')
-        ->relationship('hiepvqfilesCurrent', function (User $model) {
-            return $model->hiepvqfiles()->where('hidden', false);
+        ->cast('foffiles_current_count', 'int')
+        ->cast('foffiles_count', 'int')
+        ->hasMany('foffiles', File::class, 'actor_id')
+        ->relationship('foffilesCurrent', function (User $model) {
+            return $model->foffiles()->where('hidden', false);
         }),
 
     (new Extend\ApiController(ShowUserController::class))
@@ -116,7 +116,7 @@ return [
         ->handler(InvalidUploadException::class, ExceptionHandler::class),
 
     (new Extend\Settings())
-        ->default('hiepvq-upload.maxFileSize', Util::DEFAULT_MAX_FILE_SIZE),
+        ->default('fof-upload.maxFileSize', Util::DEFAULT_MAX_FILE_SIZE),
 
     new Extenders\AddPostDownloadTags(),
     new Extenders\CreateStorageFolder('tmp'),

@@ -1,4 +1,4 @@
-.hiepvq-upload-file-list {
+.fof-upload-file-list {
     ul {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -25,11 +25,11 @@
       &:hover {
         box-shadow: 0 4px 6px darken(@shadow-color, 5%);
   
-        .hiepvq-file-actions {
+        .fof-file-actions {
           opacity: 1; // Show actions on hover
         }
   
-        .hiepvq-file-name {
+        .fof-file-name {
           opacity: 1; // Highlight file name on hover
         }
       }
@@ -38,18 +38,18 @@
         border: 2px solid @primary-color;
         box-shadow: 0 0 0 3px fade(@primary-color, 20%);
     
-        .hiepvq-file-name {
+        .fof-file-name {
           background-color: darken(@primary-color, 10%);
         }
       }
   
-      .hiepvq-file-image-preview,
-      .hiepvq-file-icon {
+      .fof-file-image-preview,
+      .fof-file-icon {
         width: 100%; // Icons and images should fill the container
         height: auto; // Height should be auto to maintain aspect ratio
       }
   
-      .hiepvq-file-icon {
+      .fof-file-icon {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -57,7 +57,7 @@
         color: @muted-color;
       }
   
-      .hiepvq-file-actions {
+      .fof-file-actions {
         position: absolute;
         top: 0;
         right: 0;
@@ -69,7 +69,7 @@
         z-index: 2; // Ensure the actions are above other elements
       }
   
-      .hiepvq-file-action {
+      .fof-file-action {
         background-color: fade(@body-bg, 70%); // Button background with transparency
         //border-radius: 50%;
         color: @muted-color;
@@ -79,7 +79,7 @@
         }
       }
   
-      .hiepvq-file-name {
+      .fof-file-name {
         position: absolute;
         bottom: 0;
         left: 0;
@@ -97,7 +97,7 @@
         z-index: 1; // Ensure the file name is above the image/icon
       }
   
-      .hiepvq-file-loading {
+      .fof-file-loading {
         position: absolute;
         top: 50%;
         left: 50%;

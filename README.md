@@ -1,6 +1,6 @@
 `# Upload by FriendsOfFlarum
 
-[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/FriendsOfFlarum/upload/blob/master/LICENSE.md) [![Latest Stable Version](https://img.shields.io/packagist/v/hiepvq/upload.svg)](https://packagist.org/packages/hiepvq/upload) [![Total Downloads](https://img.shields.io/packagist/dt/hiepvq/upload.svg)](https://packagist.org/packages/hiepvq/upload) [![OpenCollective](https://img.shields.io/badge/opencollective-hiepvq-blue.svg)](https://opencollective.com/hiepvq/donate)
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/FriendsOfFlarum/upload/blob/master/LICENSE.md) [![Latest Stable Version](https://img.shields.io/packagist/v/fof/upload.svg)](https://packagist.org/packages/fof/upload) [![Total Downloads](https://img.shields.io/packagist/dt/fof/upload.svg)](https://packagist.org/packages/fof/upload) [![OpenCollective](https://img.shields.io/badge/opencollective-fof-blue.svg)](https://opencollective.com/fof/donate)
 
 An extension that handles file uploads intelligently for your forum.
 
@@ -22,13 +22,13 @@ An extension that handles file uploads intelligently for your forum.
 Install manually:
 
 ```sh
-composer require hiepvq/upload "*"
+composer require fof/upload "*"
 ```
 
 ## Updating
 
 ```sh
-composer require hiepvq/upload "*"
+composer require fof/upload "*"
 php flarum migrate
 php flarum cache:clear
 ```
@@ -60,20 +60,20 @@ In some circumstances, you may wish to either disable an adapter, or force the u
 
 For example, you may disable `imgur`
 ```
-(new Hiepvq\Upload\Extend\Adapters())
+(new FoF\Upload\Extend\Adapters())
         ->disable('imgur'),
 ```
 
 Chaining of multiple commands is also possible:
 ```
-(new Hiepvq\Upload\Extend\Adapters())
+(new FoF\Upload\Extend\Adapters())
         ->disable('imgur')
         ->disable('aws-s3'),
 ```
 
 You may also force an adapter:
 ```
-(new Hiepvq\Upload\Extend\Adapters())
+(new FoF\Upload\Extend\Adapters())
         ->force('imgur'),
 ```
 
@@ -87,7 +87,7 @@ Adapter names currently available:
 
 ### MapFilesCommand
 
-Using `php flarum hiepvq:upload` you have a powerful tool in your hands to map uploads to posts and
+Using `php flarum fof:upload` you have a powerful tool in your hands to map uploads to posts and
 clean up unused files. To do so there are two steps to take into consideration:
 
 - Mapping (`--map`) allows you to look through posts to identify whether which uploaded files have been used inside any posts, and store this information
@@ -99,20 +99,20 @@ of unused, stale files. You can run this command manually or as a cronjob.
 Example 1; only mapping files:
 
 ```bash
-php flarum hiepvq:upload --map
+php flarum fof:upload --map
 ```
 
 Example 2; map and clean up
 
 ```bash
-php flarum hiepvq:upload --map --cleanup --cleanup-before="a month ago"
+php flarum fof:upload --map --cleanup --cleanup-before="a month ago"
 ```
 
 Once you're happy with how the command operates, you can append the flag `--force`, which removes the need to confirm
 the action:
 
 ```bash
-php flarum hiepvq:upload --map --cleanup --cleanup-before="last year" --force
+php flarum fof:upload --map --cleanup --cleanup-before="last year" --force
 ```
 
 The following (to resume) will happen when this command is put into a recurring cronjob:
@@ -129,10 +129,10 @@ The following (to resume) will happen when this command is put into a recurring 
 
 ## Links
 
-- [![OpenCollective](https://img.shields.io/badge/donate-friendsofflarum-44AEE5?style=for-the-badge&logo=open-collective)](https://opencollective.com/hiepvq/donate)
+- [![OpenCollective](https://img.shields.io/badge/donate-friendsofflarum-44AEE5?style=for-the-badge&logo=open-collective)](https://opencollective.com/fof/donate)
 - [Flarum Discuss post](https://discuss.flarum.org/d/4154)
 - [Source code on GitHub](https://github.com/FriendsOfFlarum/upload)
 - [Report an issue](https://github.com/FriendsOfFlarum/upload/issues)
-- [Download via Packagist](https://packagist.org/packages/hiepvq/upload)
+- [Download via Packagist](https://packagist.org/packages/fof/upload)
 
 An extension by [FriendsOfFlarum](https://github.com/FriendsOfFlarum)

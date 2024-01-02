@@ -42,7 +42,7 @@ export default class FileManagerModal extends Modal {
   }
 
   className() {
-    return 'Modal--large hiepvq-file-manager-modal';
+    return 'Modal--large fof-file-manager-modal';
   }
 
   /**
@@ -70,7 +70,7 @@ export default class FileManagerModal extends Modal {
     return (
       <div className={`Modal modal-dialog ${this.className()}`}>
         <div className="Modal-content">
-          <div className="hiepvq-modal-buttons App-backControl">
+          <div className="fof-modal-buttons App-backControl">
             {!hideUser && this.selectedFilesLibrary === 'user' && (
               <UploadButton uploader={this.uploader} disabled={this.userFileState.isLoading()} isMediaUploadButton />
             )}
@@ -82,21 +82,21 @@ export default class FileManagerModal extends Modal {
                   this.showUploadModal();
                 }}
               >
-                {app.translator.trans('hiepvq-upload.forum.buttons.upload')}
+                {app.translator.trans('fof-upload.forum.buttons.upload')}
               </Button>
             )}
           </div>
 
-          <div className="hiepvq-drag-and-drop">
-            <div className="hiepvq-drag-and-drop-release">
+          <div className="fof-drag-and-drop">
+            <div className="fof-drag-and-drop-release">
               <i className="fas fa-cloud-upload-alt" />
 
-              {app.translator.trans('hiepvq-upload.forum.lib.release_to_upload')}
+              {app.translator.trans('fof-upload.forum.lib.release_to_upload')}
             </div>
           </div>
 
           <div className="Modal-header">
-            <h3 className="App-titleControl App-titleControl--text">{app.translator.trans('hiepvq-upload.forum.media_manager')}</h3>
+            <h3 className="App-titleControl App-titleControl--text">{app.translator.trans('fof-upload.forum.media_manager')}</h3>
             {app.session.user?.accessSharedFiles() && !hideUser && !hideShared && (
               <div className="LibrarySelection">{this.fileLibraryButtonItems().toArray()}</div>
             )}
@@ -115,7 +115,7 @@ export default class FileManagerModal extends Modal {
 
           <div className="Modal-footer">
             <Button onclick={this.hide.bind(this)} className="Button">
-              {app.translator.trans('hiepvq-upload.forum.buttons.cancel')}
+              {app.translator.trans('fof-upload.forum.buttons.cancel')}
             </Button>
 
             <Button
@@ -123,7 +123,7 @@ export default class FileManagerModal extends Modal {
               disabled={this.selectedFiles.length === 0 || (!this.multiSelect && this.selectedFiles.length > 1)}
               className="Button Button--primary"
             >
-              {app.translator.trans('hiepvq-upload.lib.file_list.confirm_selection_btn', { fileCount })}
+              {app.translator.trans('fof-upload.lib.file_list.confirm_selection_btn', { fileCount })}
             </Button>
           </div>
         </div>
@@ -137,14 +137,14 @@ export default class FileManagerModal extends Modal {
     items.add(
       'user',
       <Button className={`Button Button--flat ${this.selectedFilesLibrary === 'user' ? 'active' : ''}`} onclick={() => this.setLibrary('user')}>
-        {app.translator.trans('hiepvq-upload.forum.buttons.media')}
+        {app.translator.trans('fof-upload.forum.buttons.media')}
       </Button>
     );
 
     items.add(
       'shared',
       <Button className={`Button Button--flat ${this.selectedFilesLibrary === 'shared' ? 'active' : ''}`} onclick={() => this.setLibrary('shared')}>
-        {app.translator.trans('hiepvq-upload.forum.buttons.shared_media')}
+        {app.translator.trans('fof-upload.forum.buttons.shared_media')}
       </Button>
     );
 

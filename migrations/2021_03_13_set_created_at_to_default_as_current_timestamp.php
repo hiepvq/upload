@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -15,12 +15,12 @@ use Illuminate\Database\Schema\Builder;
 
 return [
     'up' => function (Builder $schema) {
-        $schema->table('hiepvq_upload_files', function (Blueprint $table) {
+        $schema->table('fof_upload_files', function (Blueprint $table) {
             $table->dateTime('created_at')->default('CURRENT_TIMESTAMP')->change();
         });
     },
     'down' => function (Builder $schema) {
-        $schema->table('hiepvq_upload_files', function (Blueprint $table) {
+        $schema->table('fof_upload_files', function (Blueprint $table) {
             $table->dateTime('created_at')->change();
         });
     },

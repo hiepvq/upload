@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,9 +10,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Templates;
+namespace FoF\Upload\Templates;
 
-use Hiepvq\Upload\File;
+use FoF\Upload\File;
 
 class BbcodeImageTemplate extends AbstractTemplate
 {
@@ -26,7 +26,7 @@ class BbcodeImageTemplate extends AbstractTemplate
      */
     public function name(): string
     {
-        return $this->trans('hiepvq-upload.admin.templates.bbcode-image');
+        return $this->trans('fof-upload.admin.templates.bbcode-image');
     }
 
     /**
@@ -34,7 +34,7 @@ class BbcodeImageTemplate extends AbstractTemplate
      */
     public function description(): string
     {
-        return $this->trans('hiepvq-upload.admin.templates.bbcode-image_description');
+        return $this->trans('fof-upload.admin.templates.bbcode-image_description');
     }
 
     /**

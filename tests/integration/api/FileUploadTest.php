@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,11 +10,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Hiepvq\Upload\Tests\integration\api;
+namespace FoF\Upload\Tests\integration\api;
 
 use Flarum\Testing\integration\RetrievesAuthorizedUsers;
-use Hiepvq\Upload\File;
-use Hiepvq\Upload\Tests\EnhancedTestCase;
+use FoF\Upload\File;
+use FoF\Upload\Tests\EnhancedTestCase;
 
 class FileUploadTest extends EnhancedTestCase
 {
@@ -25,7 +25,7 @@ class FileUploadTest extends EnhancedTestCase
     {
         parent::setUp();
 
-        $this->extension('hiepvq-upload');
+        $this->extension('fof-upload');
 
         $this->prepareDatabase([
             'users' => [
@@ -39,7 +39,7 @@ class FileUploadTest extends EnhancedTestCase
         $this->prepareDatabase(
             [
                 'group_permission' => [
-                    ['group_id' => 3, 'permission' => 'hiepvq-upload.upload'],
+                    ['group_id' => 3, 'permission' => 'fof-upload.upload'],
                 ],
             ]
         );
@@ -47,7 +47,7 @@ class FileUploadTest extends EnhancedTestCase
 
     protected function addType(string $mime, string $adapter = 'local', string $template = 'just-url')
     {
-        $this->setting('hiepvq-upload.mimeTypes', json_encode([
+        $this->setting('fof-upload.mimeTypes', json_encode([
             $mime => [
                 'adapter'   => $adapter,
                 'template'  => $template,
@@ -57,7 +57,7 @@ class FileUploadTest extends EnhancedTestCase
 
     protected function setMaxUploadSize(int $max)
     {
-        $this->setting('hiepvq-upload.maxFileSize', $max);
+        $this->setting('fof-upload.maxFileSize', $max);
     }
 
     /**
@@ -68,7 +68,7 @@ class FileUploadTest extends EnhancedTestCase
         $this->giveNormalUserUploadPermission();
 
         $response = $this->send(
-            $this->request('POST', '/api/hiepvq/upload', [
+            $this->request('POST', '/api/fof/upload', [
                 'authenticatedAs' => 2,
                 'multipart'       => [
                     $this->uploadFile($this->fixtures('MilkyWay.jpg')),
@@ -106,7 +106,7 @@ class FileUploadTest extends EnhancedTestCase
     public function user_without_permission_cannot_upload_a_file()
     {
         $response = $this->send(
-            $this->request('POST', '/api/hiepvq/upload', [
+            $this->request('POST', '/api/fof/upload', [
                 'authenticatedAs' => 2,
                 'multipart'       => [
                     $this->uploadFile($this->fixtures('MilkyWay.jpg')),
@@ -125,7 +125,7 @@ class FileUploadTest extends EnhancedTestCase
         $this->giveNormalUserUploadPermission();
 
         $response = $this->send(
-            $this->request('POST', '/api/hiepvq/upload', [
+            $this->request('POST', '/api/fof/upload', [
                 'authenticatedAs' => 2,
                 'multipart'       => [
                     $this->uploadFile($this->fixtures('Plain.txt')),
@@ -151,7 +151,7 @@ class FileUploadTest extends EnhancedTestCase
         $this->giveNormalUserUploadPermission();
 
         $response = $this->send(
-            $this->request('POST', '/api/hiepvq/upload', [
+            $this->request('POST', '/api/fof/upload', [
                 'authenticatedAs' => 2,
                 'multipart'       => [
                     $this->uploadFile($this->fixtures('Plain.txt')),
@@ -171,7 +171,7 @@ class FileUploadTest extends EnhancedTestCase
         $this->giveNormalUserUploadPermission();
 
         $response = $this->send(
-            $this->request('POST', '/api/hiepvq/upload', [
+            $this->request('POST', '/api/fof/upload', [
                 'authenticatedAs' => 2,
                 'multipart'       => [
                     $this->uploadFile($this->fixtures('MilkyWay.jpg')),
@@ -194,7 +194,7 @@ class FileUploadTest extends EnhancedTestCase
     public function admin_can_upload_a_file_and_then_delete_it()
     {
         $response = $this->send(
-            $this->request('POST', '/api/hiepvq/upload', [
+            $this->request('POST', '/api/fof/upload', [
                 'authenticatedAs' => 1,
                 'multipart'       => [
                     $this->uploadFile($this->fixtures('MilkyWay.jpg')),
@@ -211,7 +211,7 @@ class FileUploadTest extends EnhancedTestCase
         $this->assertNotNull($file);
 
         $response = $this->send(
-            $this->request('DELETE', '/api/hiepvq/upload/delete/'.$file->uuid, [
+            $this->request('DELETE', '/api/fof/upload/delete/'.$file->uuid, [
                 'authenticatedAs' => 1,
             ])
         );
