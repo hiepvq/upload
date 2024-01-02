@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,10 +10,10 @@
  * file that was distributed with this source code.
  */
 
-namespace HiepVq\Upload\Contracts;
+namespace FoF\Upload\Contracts;
 
-use HiepVq\Upload\Commands\Download;
-use HiepVq\Upload\File;
+use FoF\Upload\Commands\Download;
+use FoF\Upload\File;
 use Psr\Http\Message\ResponseInterface;
 
 interface Downloader

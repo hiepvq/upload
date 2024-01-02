@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,9 +10,9 @@
  * file that was distributed with this source code.
  */
 
-namespace HiepVq\Upload\Events\Adapter;
+namespace FoF\Upload\Events\Adapter;
 
-use HiepVq\Upload\Helpers\Util;
+use FoF\Upload\Helpers\Util;
 
 class Instantiate
 {

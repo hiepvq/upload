@@ -66,6 +66,6 @@ export default class File extends Model {
   }
 
   apiEndpoint() {
-    return '/hiepvq/uploads' + (this.exists ? '/' + this.id() : '');
+    return '/fof/uploads' + (this.exists ? '/' + this.id() : '');
   }
 }

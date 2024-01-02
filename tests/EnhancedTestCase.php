@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace HiepVq\Upload\Tests;
+namespace FoF\Upload\Tests;
 
 use Flarum\Testing\integration\TestCase as BaseTestCase;
 use Laminas\Diactoros\ServerRequest;

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace HiepVq\Upload\Tests\integration\api;
+namespace FoF\Upload\Tests\integration\api;
 
 use Flarum\Testing\integration\RetrievesAuthorizedUsers;
 use Flarum\Testing\integration\TestCase;
@@ -23,13 +23,13 @@ class UserAttributes extends TestCase
     {
         parent::setUp();
 
-        $this->extension('hiepvq-upload');
+        $this->extension('fof-upload');
 
         $this->prepareDatabase([
             'users' => [
                 $this->normalUser(),
             ],
-            'hiepvq_upload_files' => [
+            'fof_upload_files' => [
                 ['id' => 1, 'base_name' => 'test_file.abc', 'path' => 'path/test_file.abc', 'url' => 'http://localhost/test_file.abc', 'type' => 'test/file', 'size' => 123, 'upload_method' => 'local', 'actor_id' => 2, 'shared' => false],
             ],
         ]);
@@ -54,8 +54,8 @@ class UserAttributes extends TestCase
 
         $json = json_decode($response->getBody()->getContents(), true);
 
-        $this->assertEquals(1, $json['data']['attributes']['hiepvq-upload-uploadCountCurrent']);
-        $this->assertEquals(1, $json['data']['attributes']['hiepvq-upload-uploadCountAll']);
+        $this->assertEquals(1, $json['data']['attributes']['fof-upload-uploadCountCurrent']);
+        $this->assertEquals(1, $json['data']['attributes']['fof-upload-uploadCountAll']);
     }
 
     /**
@@ -74,8 +74,8 @@ class UserAttributes extends TestCase
 
         $json = json_decode($response->getBody()->getContents(), true);
 
-        $this->assertEquals(1, $json['data']['attributes']['hiepvq-upload-uploadCountCurrent']);
-        $this->assertEquals(1, $json['data']['attributes']['hiepvq-upload-uploadCountAll']);
+        $this->assertEquals(1, $json['data']['attributes']['fof-upload-uploadCountCurrent']);
+        $this->assertEquals(1, $json['data']['attributes']['fof-upload-uploadCountAll']);
     }
 
     /**
@@ -97,8 +97,8 @@ class UserAttributes extends TestCase
 
         $json = json_decode($response->getBody()->getContents(), true);
 
-        $this->assertArrayHasKey('hiepvq-upload-viewOthersMediaLibrary', $json['data']['attributes']);
-        $this->assertArrayHasKey('hiepvq-upload-deleteOthersMediaLibrary', $json['data']['attributes']);
+        $this->assertArrayHasKey('fof-upload-viewOthersMediaLibrary', $json['data']['attributes']);
+        $this->assertArrayHasKey('fof-upload-deleteOthersMediaLibrary', $json['data']['attributes']);
     }
 
     /**
@@ -120,8 +120,8 @@ class UserAttributes extends TestCase
 
         $json = json_decode($response->getBody()->getContents(), true);
 
-        $this->assertArrayNotHasKey('hiepvq-upload-viewOthersMediaLibrary', $json['data']['attributes']);
-        $this->assertArrayNotHasKey('hiepvq-upload-deleteOthersMediaLibrary', $json['data']['attributes']);
+        $this->assertArrayNotHasKey('fof-upload-viewOthersMediaLibrary', $json['data']['attributes']);
+        $this->assertArrayNotHasKey('fof-upload-deleteOthersMediaLibrary', $json['data']['attributes']);
     }
 
     /**
@@ -143,7 +143,7 @@ class UserAttributes extends TestCase
 
         $json = json_decode($response->getBody()->getContents(), true);
 
-        $this->assertArrayNotHasKey('hiepvq-upload-uploadSharedFiles', $json['data']['attributes']);
+        $this->assertArrayNotHasKey('fof-upload-uploadSharedFiles', $json['data']['attributes']);
     }
 
     /**
@@ -165,6 +165,6 @@ class UserAttributes extends TestCase
 
         $json = json_decode($response->getBody()->getContents(), true);
 
-        $this->assertTrue($json['data']['attributes']['hiepvq-upload-uploadSharedFiles']);
+        $this->assertTrue($json['data']['attributes']['fof-upload-uploadSharedFiles']);
     }
 }

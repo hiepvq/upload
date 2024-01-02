@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,13 +10,13 @@
  * file that was distributed with this source code.
  */
 
-namespace HiepVq\Upload\Api\Controllers;
+namespace FoF\Upload\Api\Controllers;
 
 use Flarum\Http\RequestUtil;
 use Flarum\Post\PostRepository;
 use Flarum\Settings\SettingsRepositoryInterface;
-use HiepVq\Upload\Api\Serializers\FileSerializer;
-use HiepVq\Upload\Commands\Download;
+use FoF\Upload\Api\Serializers\FileSerializer;
+use FoF\Upload\Commands\Download;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -58,7 +58,7 @@ class DownloadController implements RequestHandlerInterface
 
     protected function validateCsrf(?string $csrf, Session $session): void
     {
-        if ((bool) !$this->settings->get('hiepvq-upload.disableHotlinkProtection') && $csrf !== $session->token()) {
+        if ((bool) !$this->settings->get('fof-upload.disableHotlinkProtection') && $csrf !== $session->token()) {
             throw new ModelNotFoundException();
         }
     }

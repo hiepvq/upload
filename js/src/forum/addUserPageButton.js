@@ -5,7 +5,7 @@ import LinkButton from 'flarum/common/components/LinkButton';
 
 export default function addUserPageButton() {
   extend(UserPage.prototype, 'navItems', function (items) {
-    const canUpload = !!app.forum.attribute('hiepvq-upload.canUpload');
+    const canUpload = !!app.forum.attribute('fof-upload.canUpload');
     const hasUploads = !!this.user.uploadCountCurrent();
 
     if (app.session.user && (app.session.user.viewOthersMediaLibrary() || (this.user === app.session.user && (canUpload || hasUploads)))) {
@@ -23,8 +23,8 @@ export default function addUserPageButton() {
           },
           [
             this.user === app.session.user
-              ? app.translator.trans('hiepvq-upload.forum.buttons.media')
-              : app.translator.trans('hiepvq-upload.forum.buttons.user_uploads'),
+              ? app.translator.trans('fof-upload.forum.buttons.media')
+              : app.translator.trans('fof-upload.forum.buttons.user_uploads'),
             ' ',
             uploadCount > 0 ? <span className="Button-badge">{uploadCount}</span> : '',
           ]

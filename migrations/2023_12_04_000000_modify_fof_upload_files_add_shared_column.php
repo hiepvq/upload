@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -12,6 +12,6 @@
 
 use Flarum\Database\Migration;
 
-return Migration::addColumns('hiepvq_upload_files', [
+return Migration::addColumns('fof_upload_files', [
     'shared' => ['boolean', 'default' => false],
 ]);

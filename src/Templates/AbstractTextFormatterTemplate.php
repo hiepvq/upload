@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,10 +10,10 @@
  * file that was distributed with this source code.
  */
 
-namespace HiepVq\Upload\Templates;
+namespace FoF\Upload\Templates;
 
-use HiepVq\Upload\Contracts\TextFormatterTemplate;
-use HiepVq\Upload\File;
+use FoF\Upload\Contracts\TextFormatterTemplate;
+use FoF\Upload\File;
 
 abstract class AbstractTextFormatterTemplate extends AbstractTemplate implements TextFormatterTemplate
 {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,10 +10,10 @@
  * file that was distributed with this source code.
  */
 
-namespace HiepVq\Upload\Events\File;
+namespace FoF\Upload\Events\File;
 
 use Flarum\User\User;
-use HiepVq\Upload\File;
+use FoF\Upload\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 abstract class Event

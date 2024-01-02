@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,10 +10,10 @@
  * file that was distributed with this source code.
  */
 
-namespace HiepVq\Upload\Listeners;
+namespace FoF\Upload\Listeners;
 
-use HiepVq\Upload\Events\File\WillBeUploaded;
-use HiepVq\Upload\Processors\ImageProcessor;
+use FoF\Upload\Events\File\WillBeUploaded;
+use FoF\Upload\Processors\ImageProcessor;
 
 class AddImageProcessor
 {

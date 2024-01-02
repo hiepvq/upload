@@ -1,4 +1,4 @@
-name: HiepVq Upload JS
+name: FoF Upload JS
 
 on: [workflow_dispatch, push, pull_request]
 

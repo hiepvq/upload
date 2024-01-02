@@ -1,4 +1,4 @@
-<div class="ButtonGroup" data-hiepvq-upload-download-uuid="{@uuid}">
+<div class="ButtonGroup" data-fof-upload-download-uuid="{@uuid}">
     <div class="Button hasIcon Button--icon Button--primary"><i class="fas fa-download"></i></div>
     <div class="Button">
         {SIMPLETEXT1}

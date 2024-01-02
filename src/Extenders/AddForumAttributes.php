@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace HiepVq\Upload\Extenders;
+namespace FoF\Upload\Extenders;
 
 use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\Settings\SettingsRepositoryInterface;
@@ -33,16 +33,16 @@ class AddForumAttributes
 
     public function __invoke(ForumSerializer $serializer): array
     {
-        $attributes['hiepvq-upload.canUpload'] = $serializer->getActor()->can('hiepvq-upload.upload');
-        $attributes['hiepvq-upload.canDownload'] = $serializer->getActor()->can('hiepvq-upload.download');
-        $attributes['hiepvq-upload.composerButtonVisiblity'] = $this->settings->get('hiepvq-upload.composerButtonVisiblity', 'both');
+        $attributes['fof-upload.canUpload'] = $serializer->getActor()->can('fof-upload.upload');
+        $attributes['fof-upload.canDownload'] = $serializer->getActor()->can('fof-upload.download');
+        $attributes['fof-upload.composerButtonVisiblity'] = $this->settings->get('fof-upload.composerButtonVisiblity', 'both');
 
-        if ($watermark = $this->settings->get('hiepvq-watermark_path')) {
-            $attributes['hiepvq-watermarkUrl'] = $this->assetsDir->url($watermark);
+        if ($watermark = $this->settings->get('fof-watermark_path')) {
+            $attributes['fof-watermarkUrl'] = $this->assetsDir->url($watermark);
         }
 
-        $serializer->getActor()->load('hiepvqfiles');
-        $serializer->getActor()->load('hiepvqfilesCurrent');
+        $serializer->getActor()->load('foffiles');
+        $serializer->getActor()->load('foffilesCurrent');
 
         return $attributes;
     }

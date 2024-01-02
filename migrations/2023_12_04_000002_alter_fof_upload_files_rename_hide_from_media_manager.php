@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -12,4 +12,4 @@
 
 use Flarum\Database\Migration;
 
-return Migration::renameColumn('hiepvq_upload_files', 'hide_from_media_manager', 'hidden');
+return Migration::renameColumn('fof_upload_files', 'hide_from_media_manager', 'hidden');

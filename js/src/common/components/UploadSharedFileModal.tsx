@@ -29,7 +29,7 @@ export default class UploadSharedFileModal extends Modal<CustomAttrs> {
   }
 
   title() {
-    return app.translator.trans('hiepvq-upload.lib.upload-shared-file-modal.title');
+    return app.translator.trans('fof-upload.lib.upload-shared-file-modal.title');
   }
 
   onFileChange(e) {
@@ -69,7 +69,7 @@ export default class UploadSharedFileModal extends Modal<CustomAttrs> {
           ondragover={this.onDragOver.bind(this)}
           ondrop={this.onDrop.bind(this)}
         >
-          {app.translator.trans('hiepvq-upload.lib.upload-shared-file-modal.dropzone')}
+          {app.translator.trans('fof-upload.lib.upload-shared-file-modal.dropzone')}
           <input
             type="file"
             multiple
@@ -101,7 +101,7 @@ export default class UploadSharedFileModal extends Modal<CustomAttrs> {
         </div>
         <div className="UploadSharedFileModal-options Form-group">
           <Switch state={this.options.hidden} onchange={(value: boolean) => (this.options.hidden = value)}>
-            {app.translator.trans('hiepvq-upload.lib.upload-shared-file-modal.hide-from-media-gallery')}
+            {app.translator.trans('fof-upload.lib.upload-shared-file-modal.hide-from-media-gallery')}
           </Switch>
         </div>
         <div className="UploadSharedFileModal-submit App-primaryControl">
@@ -111,7 +111,7 @@ export default class UploadSharedFileModal extends Modal<CustomAttrs> {
             onclick={this.upload.bind(this)}
             disabled={!this.files.length || this.loading}
           >
-            {app.translator.trans('hiepvq-upload.lib.upload-shared-file-modal.upload')}
+            {app.translator.trans('fof-upload.lib.upload-shared-file-modal.upload')}
           </Button>
         </div>
       </div>
@@ -135,7 +135,7 @@ export default class UploadSharedFileModal extends Modal<CustomAttrs> {
 
     const results = await app.request<ApiResponsePlural<File>>({
       method: 'POST',
-      url: app.forum.attribute('apiUrl') + '/hiepvq/upload',
+      url: app.forum.attribute('apiUrl') + '/fof/upload',
       serialize: (raw: FormData) => raw, // Prevent mithril from trying to serialize FormData
       body: formData,
     });

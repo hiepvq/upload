@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -18,11 +18,11 @@ return [
 
         $db->table('group_permission')
             ->where('permission', 'flagrow.upload')
-            ->update(['permission' => 'hiepvq-upload.upload']);
+            ->update(['permission' => 'fof-upload.upload']);
 
         $db->table('group_permission')
             ->where('permission', 'flagrow.upload.download')
-            ->update(['permission' => 'hiepvq-upload.download']);
+            ->update(['permission' => 'fof-upload.download']);
     },
     'down' => function (Builder $schema) {
         // Not doing anything but `down` has to be defined

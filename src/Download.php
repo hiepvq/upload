@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of hiepvq/upload.
+ * This file is part of fof/upload.
  *
  * Copyright (c) FriendsOfFlarum.
  * Copyright (c) Flagrow.
@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace HiepVq\Upload;
+namespace FoF\Upload;
 
 use Carbon\Carbon;
 use Flarum\Database\AbstractModel;
@@ -32,7 +32,7 @@ use Flarum\User\User;
  */
 class Download extends AbstractModel
 {
-    protected $table = 'hiepvq_upload_downloads';
+    protected $table = 'fof_upload_downloads';
 
     public $timestamps = false;
 
